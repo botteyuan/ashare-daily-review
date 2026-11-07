@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A股短线博弈复盘 — 2026-10-30（次日计划 11-02）</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+  :root{--bg:#f7f8fa;--card:#fff;--text:#1c1917;--muted:#6b7280;--border:#e5e7eb;
+        --accent:#1d4ed8;--red:#e63946;--green:#2d6a4f;--amber:#d97706;--soft:#f1f5f9;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,"PingFang SC","Noto Sans SC","Microsoft YaHei",sans-serif;
+       background:var(--bg);color:var(--text);line-height:1.6;padding:24px 14px}
+  .container{max-width:960px;margin:0 auto}
+  .header{background:linear-gradient(135deg,#7f1d1d,#b91c1c);color:#fff;border-radius:14px;padding:22px 24px;margin-bottom:16px}
+  .header h1{font-size:1.35rem;font-weight:700}
+  .header .meta{opacity:.9;font-size:.85rem;margin-top:6px}
+  .verdict{background:#fff;border:1px solid var(--border);border-left:5px solid var(--red);
+           border-radius:10px;padding:14px 18px;margin-bottom:16px;font-size:.95rem}
+  .verdict b{color:var(--red)}
+  h2{font-size:1.1rem;font-weight:700;margin:26px 0 12px;padding-bottom:6px;border-bottom:2px solid var(--accent);color:var(--accent)}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px 18px;margin-bottom:14px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-bottom:12px}
+  .kpi{background:var(--soft);border-radius:8px;padding:10px 12px;text-align:center}
+  .kpi .v{font-size:1.1rem;font-weight:700}
+  .kpi .l{font-size:.72rem;color:var(--muted)}
+  .up{color:var(--red)} .down{color:var(--green)}
+  table{width:100%;border-collapse:collapse;font-size:.82rem;margin-top:6px}
+  th,td{padding:6px 8px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+  th{color:var(--muted);font-weight:600;background:var(--soft)}
+  .tag{display:inline-block;font-size:.72rem;padding:1px 7px;border-radius:999px;background:#e0e7ff;color:#1e40af;margin:1px}
+  .tag.hot{background:#fee2e2;color:#b91c1c}
+  .tag.warn{background:#fef3c7;color:#b45309}
+  .sec-h{font-weight:700;margin:10px 0 4px}
+  .plan{background:var(--soft);border-radius:8px;padding:12px 14px;margin:8px 0;font-size:.88rem}
+  .plan .t{font-weight:700;color:var(--accent)}
+  .chart{width:100%;height:300px}
+  ul{margin:6px 0 6px 18px;font-size:.88rem}
+  li{margin:3px 0}
+  .watch{background:#fff;border:1px dashed var(--accent);border-radius:10px;padding:14px 16px;margin:10px 0}
+  .watch li{margin:4px 0}
+  .footer{margin-top:28px;padding-top:12px;border-top:1px solid var(--border);color:var(--muted);font-size:.78rem;text-align:center}
+  .note{font-size:.78rem;color:var(--muted);margin-top:8px}
+  .recap{background:#fff;border:1px solid var(--border);border-left:5px solid var(--accent);border-radius:10px;padding:16px 18px;margin-bottom:16px}
+  .recap h2{border-bottom:2px solid var(--accent);margin-top:0}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <h1>A股短线博弈复盘</h1>
+    <div class="meta">复盘日：2026-10-30（周五，10月收官）｜ 次日计划交易日：2026-11-02（周一，下一交易日）｜ 数据后端：domain_search（聚合 westock-data 结构化行情、neodata 市场宽度与资金流、公开财经媒体收盘复盘）</div>
+  </div>
+
+  <div class="verdict">
+    <b>一句话定性：10月收官日「放量破位杀跌 + 极致防御抱团」，退潮深化至冰点（上证 -1.44% 失守3600、创业板 -4.13% 创阶段新低、科创50 -5.48% 最弱；两市 1.67 万亿放量约 1179 亿；红盘率仅 16%；涨停 49 / 跌停 93，跌停反超涨停近 1.9 倍；连板压缩至 9 只、晋级率 30%；全市场主力净流出约 390 亿）。</b>
+    隔夜美股科技财报暴雷（谷歌自由现金流转负暴跌 12.64%、英特尔指引逊色、亚马逊 TCE 自由现金流 -424 亿）+ 三星/“易中天”三季报增速边际放缓 + 月末杠杆被动出清，共振触发 A 股成长链「业绩杀 + 估值杀」。结构：<b>白酒 / 银行红利逆势抱团（泸州老窖/古井贡酒/迎驾贡酒涨停，四大行+神华+中石油创历史新高），商业航天由前日涨停潮转为「先锋一字顶高度、中军冲高回落」的内部分化补跌，CPO/半导体/机器人集体崩塌（新易盛 -14%、天孚 -8.4% 连跌两日、光洋 4 板断板 -8.69%、多伦 3 连跌停）。</b>
+    <b>次日策略：冰点防守，总仓 ≤ 20%（破线即减），只做红利防御回踩 + 白酒低位换手，回避一字高标、退潮科技、中位断层与纯情绪。</b>
+  </div>
+
+  <!-- 附：前一日（10-29）计划总结复盘（Step 0） -->
+  <div class="recap">
+    <h2>附：前一日（10-29）计划总结复盘</h2>
+    <p class="note">目标交易日 = 前一日报告文件名日期 +1 个交易日 = 2026-10-30（当日确为交易日）。下列「条件 / 操作 / 止损」取自 10-29 报告「十、次日操作计划」，实际行情取自 10-30 真实收盘数据（来源：westock-data 结构化行情 + neodata 市场宽度/资金流 + 公开财经收盘复盘，多源交叉验证）。</p>
+    <table>
+      <thead><tr><th>计划项</th><th>标的</th><th>原定条件 / 止损</th><th>10-30 实际表现</th><th>归类</th></tr></thead>
+      <tbody>
+        <tr><td rowspan="4">① 容量中军<br>防御回踩</td><td>工商银行 601398</td><td rowspan="4">所属板块（银行/煤炭/石油）主力净流入非负 + 分时回踩 5 日线企稳不补跌 → 低吸；破 5 日线放量 → 出</td><td class="down">-0.34%</td><td rowspan="4">工行/建行微跌守线、神华 +0.72% 收红，<b>条件触发有效、风险可控</b>；中国卫星 +0.02% 冲高 59.72 回落、未回封 → <b>条件未触发，不接</b>。方向全部正确</td></tr>
+        <tr><td>建设银行 601939</td><td class="down">-0.50%</td></tr>
+        <tr><td>中国神华 601088</td><td class="up">+0.72%</td></tr>
+        <tr><td>中国卫星 600118</td><td class="up">+0.02%</td></tr>
+        <tr><td rowspan="5">② 绝对高位<br>分歧低吸</td><td>光洋股份 002708</td><td rowspan="5">看换手充分后的分歧回封（≤3% 仓），一字加速/高开秒板不碰；江顺/东贝看换手晋级，一字不接；襄阳仅风向标不接</td><td class="down">-8.69%</td><td rowspan="5">光洋 4 板断板 -8.69%、东贝 3 板跌停、江顺 +5.48% 未晋级 → <b>条件未触发，不接</b>；青岛 +9.98% 一字 5 板、上海沪工 +10.03% 一字 3 板 → <b>一字不碰（机械不可买）</b>，不接正确；襄阳 -3.57% 不接正确</td></tr>
+        <tr><td>青岛食品 001219</td><td class="up">+9.98%（一字 5 板）</td></tr>
+        <tr><td>上海沪工 603131</td><td class="up">+10.03%（一字 3 板）</td></tr>
+        <tr><td>江顺科技 001400</td><td class="up">+5.48%</td></tr>
+        <tr><td>东贝集团 601956</td><td class="down">-10.00%（跌停）</td></tr>
+        <tr><td rowspan="6">③ 低位试错<br>一进二/二进三</td><td>上海沪工 603131</td><td rowspan="6">竞价量＞昨日 1/3、开盘不破 0 轴、封单质量尚可、板块（商业航天）主力净流入为正；剔除无硬逻辑跟风</td><td class="up">+10.03%（一字）</td><td rowspan="6">邵阳液压 +8.21% 高开不破 0 轴 = <b>条件触发有效、命中</b>；上海沪工一字（不可买，赚不到非误判）、铖昌 -5.64%、山东矿机 -10.06% 跌停、航天晨光 -3.49%、文投 -10.13% 跌停 → <b>条件未触发，不接</b></td></tr>
+        <tr><td>铖昌科技 001270</td><td class="down">-5.64%</td></tr>
+        <tr><td>山东矿机 002526</td><td class="down">-10.06%（跌停）</td></tr>
+        <tr><td>邵阳液压 301079</td><td class="up">+8.21%</td></tr>
+        <tr><td>航天晨光 600501</td><td class="down">-3.49%</td></tr>
+        <tr><td>文投控股 600715</td><td class="down">-10.13%（跌停）</td></tr>
+        <tr><td>④ 回避区</td><td>襄阳轴承/中际旭创/新易盛/天孚通信/富瀚微/必易微/斯迪克/赛福天/多伦/华瓷/正裕/桂发祥/茂业/海洋王/高位次新</td><td>一律高风险区，不接力</td><td>CPO 集体崩（新易盛 -14%、天孚连跌）、机器人老龙头赛福天/多伦 3 连跌停/华瓷/正裕连跌停、传媒短剧近十股跌停、羊字辈高位百洋/大洋跌停</td><td>回避判断精准正确，最干净的一条</td></tr>
+      </tbody>
+    </table>
+    <div class="sec-h">① 当日计划命中率（双口径，诚实披露）</div>
+    <ul>
+      <li><b>纪律 / 方向口径（计划的「条件未触发则不接、破线则出、回避区不接」框架是否被正确验证）：4 / 4 条全部正确</b>——① 神华 +0.72% 条件触发有效、工行/建行守线、中国卫星未追高回封；② 高标一字/断板/未晋级全部正确不接；③ 邵阳 +8.21% 命中、其余低位全未触发不接；④ 回避区精准。退潮冰点日防守框架零失误。</li>
+      <li><b>严格买点触发口径（条件触发且「可上车」买点成立）：2 / 3 条目</b>——神华（+0.72%）、邵阳液压（+8.21%）为当日仅有的两个有效换手买点；高位条目（②）0 触发。若按 15 只计划标的计，可买点命中 2 / 15。<b>误判 0 条：</b>上海沪工 / 青岛食品虽涨停却因「一字板」机械不可买，属「赚不到」而非「误判」；其余不接标的均下跌，无「接了不该接」或「漏接可买标的」。</li>
+    </ul>
+    <div class="sec-h">② 可改进点（3 条以内）</div>
+    <ul>
+      <li><b>商业航天由「逆势主线」切换为「兑现补跌」，一字先锋是持筹者盛宴、未上车者风险。</b>10-30 商业航天板块 -4% 补跌，上海沪工 3 板一字、中国卫星冲高回落 +0.02%——先锋一字顶高度、中军做消化，是典型「高位兑现」结构。次日对一字高标只做风向标：一字板机械不可买 + 开板即派面，不纳入可买点。</li>
+      <li><b>低位试错的弱条件在退潮日仍能触发，须叠加「题材主力净流为正」前置。</b>邵阳液压虽满足「竞价量＞昨日 1/3、开盘不破 0 轴」且收 +8.21%，但当日红盘率仅 16%、商业航天板块整体 -4% 补跌，单一标的强势无板块确认，次日易低开。改进：低位试错买点须同时满足「所属题材主力净流入为正」，否则视为孤立脉冲、不接。</li>
+      <li><b>红利防御须设退出条件，而非单纯持有。</b>神华 / 工行 / 建行是放量杀跌日唯一正期望方向，但四大行 A+H 总市值已破 10 万亿历史高位、红利拥挤度 57.37% 上行。改进：防御仓位一旦观察到「情绪修复信号（跌停＜40、成交守住 1.6 万亿、成长止跌）」即止盈 / 降仓，避免风险偏好回暖时高股息补跌。</li>
+    </ul>
+  </div>
+
+  <!-- 一、大盘概览 -->
+  <h2>一、大盘概览</h2>
+  <div class="card">
+    <div class="grid">
+      <div class="kpi"><div class="v down">3599.02</div><div class="l">上证指数 -1.44%</div></div>
+      <div class="kpi"><div class="v down">10833.78</div><div class="l">深证成指 -2.73%</div></div>
+      <div class="kpi"><div class="v down">2413.63</div><div class="l">创业板指 -4.13%</div></div>
+      <div class="kpi"><div class="v down">1160.84</div><div class="l">科创50 -5.48%</div></div>
+      <div class="kpi"><div class="v down">-2.68%</div><div class="l">北证50</div></div>
+      <div class="kpi"><div class="v down">1.67万亿</div><div class="l">成交 放量约1179亿</div></div>
+      <div class="kpi"><div class="v down">49 / 93</div><div class="l">涨停 / 跌停（倒挂1.9倍）</div></div>
+      <div class="kpi"><div class="v down">9只</div><div class="l">连板（晋级率30%）</div></div>
+      <div class="kpi"><div class="v down">≈ -390亿</div><div class="l">全市场主力净流出</div></div>
+    </div>
+    <div id="idxChart" class="chart"></div>
+    <div id="fundChart" class="chart" style="height:240px"></div>
+    <p class="note">指数结构：沪指失守 3600 点、双创与成长惨烈杀跌（创业板 -4.13%、科创50 -5.48% 均创本轮新低）；午后一度翻红再回落，深成指/创业板以最低价收盘，尾盘杀跌特征明显。涨跌家数 893 涨 / 4602 跌（<b>红盘率仅 16%</b>）；涨停 49（剔除 ST 47）、跌停 93（剔除 ST 86），<b>跌停反超涨停近 1.9 倍</b>；封板率 60%、31 股封板未遂；昨日涨停今日仅 48.72% 上涨（接力即亏）；连板 9 只、晋级率 30%、空间高度 5 板（青岛食品，孤立高点）。量能：两市 1.674 万亿、<b>放量约 1179 亿</b>，典型「放量杀跌」，抛压由有序止盈升级为恐慌出逃。资金：全市场主力净流出约 390 亿（沪深300 净流出 108 亿），仅白酒/医药/食品饮料/高股息获净流入，电子净流出 65 亿、半导体净流出 56 亿、通信净流出 46 亿居首。按市场状态框架，属<b>退潮深化→冰点（放量破位 + 跌停反超 + 红盘 16%，非分歧）</b>。</p>
+  </div>
+
+  <!-- 二、周期定位 -->
+  <h2>二、情绪周期定位</h2>
+  <div class="card">
+    <ul>
+      <li><b>量温度：</b>涨停 49、跌停 93、红盘率 16%、封板率 60%、连板晋级率 30%、首板约 40 只 → <b>冰点（退潮二次确认 + 放量恐慌）</b>。</li>
+      <li><b>识主线：</b>无共振主线，仅「白酒 + 银行红利」防御抱团逆势；商业航天由前日涨停潮转为内部分化补跌（上海沪工一字 3 板、中国卫星冲高回落）；CPO/半导体/机器人全面退潮 → 主线缺位、抱团防御。</li>
+      <li><b>测亏钱效应：</b>极端扩散——新易盛 -14%、天孚通信连跌两日、沪电/胜宏等 PCB 跌停；光洋 4 板断板 -8.69%、东贝/山东矿机跌停、多伦 3 连跌停；传媒短剧近十股跌停、文投控股跌停；昨日涨停续涨率仅 48.72%，追高即被埋。</li>
+      <li><b>判持筹心态：</b>融资余额 23491.53 亿（环比 -1.10%，杠杆被动出清）；尾盘 15 分钟主力净流出 106.63 亿，食品饮料/银行尾盘才勉强净流入；场外资金观望、踩踏式减仓。</li>
+      <li><b>空仓检验：</b>次日相对舒服的买点：红利防御回踩（神华/工行/建行不破 5 日线）、白酒低位换手（泸州/古井）；高位一字（青岛/上海沪工）、退潮科技（CPO/半导体/机器人）、传媒短剧赢面不足 40%，多数不值得接。</li>
+    </ul>
+    <p class="note">周期判断：旧主线（算力硬件/CPO/半导体/机器人）加速出清，商业航天前日涨停潮后 10-30 内部分化补跌，<b>市场进入「无主线、纯防御抱团」的冰点阶段</b>。结论：冰点日，控仓 ≤ 20%，只做红利防御回踩与白酒低位换手，不接力一字高标、不做科技抄底、回避中位断层与纯情绪。</p>
+  </div>
+
+  <!-- 三、龙头梯队：绝对高位 -->
+  <h2>三、龙头梯队 · 绝对高位（空间板 5 板，孤立高点）</h2>
+  <div class="card">
+    <table>
+      <thead><tr><th>标的</th><th>代码</th><th>板数</th><th>属性</th><th>板型</th><th>次日定位</th></tr></thead>
+      <tbody>
+        <tr><td>青岛食品</td><td>001219</td><td><span class="up">5板（一字）</span></td><td>大消费 / 乳业 + 控股股东拟转让 29.24% 股权</td><td>一字板，换手 24.9%，5 日 +61%</td><td>全场唯一空间板，但属公司级控制权事件独立逻辑、无梯队支撑，视为孤立高点；一字不接，开板即 A 杀风险</td></tr>
+        <tr><td>上海沪工</td><td>603131</td><td><span class="up">3板（一字）</span></td><td>商业航天 / 卫星互联网（先锋）</td><td>一字板，振幅 0%、换手 3.21%、封单 2.58 亿</td><td>商业航天先锋，但一字机械不可买、开板即派面；仅作风向标，不接</td></tr>
+        <tr><td>澳洋健康</td><td>002172</td><td><span class="up">3板</span></td><td>医疗 / 脑机接口</td><td>换手 29.99%，+10.06%</td><td>低位轮动活口，容量有限，看换手延续</td></tr>
+        <tr><td>东方海洋</td><td>002086</td><td><span class="up">8天4板</span></td><td>消费 / 医疗 + 羊字辈</td><td>换手 27.18%，+10.12%</td><td>羊字辈高低切活口，纯情绪属性，谨慎</td></tr>
+        <tr><td>光洋股份</td><td>002708</td><td><span class="down">4板断板 -8.69%</span></td><td>机器人减速器（原空间龙）</td><td>高开低走放量长阴，换手 32.47%、成交 32.6 亿</td><td>高位放量断板，标志机器人退潮；仅作风向标，不接；次日若继续杀将压制高位</td></tr>
+      </tbody>
+    </table>
+    <p class="note">绝对高位三要点：① <b>空间高度 5 板（青岛食品），但属孤立高点</b>——公司级股权事件驱动、无梯队无板块支撑，已两度风险提示；真实市场高度中枢在 2~3 板。② 商业航天先锋上海沪工 3 板一字、中军中国卫星冲高回落 +0.02%，呈「先锋顶高度、中军做消化」分层，非单边加速。③ 光洋股份（原 4 板空间龙）断板 -8.69%、东贝/山东矿机跌停，标志机器人高位坍塌；文投控股（7 天 4 板）跌停 -10.13%、多伦科技 3 连跌停，高位负反馈全面扩散。</p>
+  </div>
+
+  <!-- 四、低位试错：绝对低位 -->
+  <h2>四、低位试错 · 绝对低位（首板 / 一进二 / 二进三）</h2>
+  <div class="card">
+    <div class="sec-h">白酒 / 大消费（防御抱团逆势主线，低位高弹性）</div>
+    <ul>
+      <li>5 板：青岛食品 001219（+9.98% 一字，乳业 + 股权事件）</li>
+      <li>2 板：巴比食品 605339（+10.01%，食品加工/预制菜）；首板：泸州老窖 000568、古井贡酒 002594→603198、迎驾贡酒 603198、皇台酒业 000995、黑芝麻 000716、泉阳泉 600189 涨停</li>
+      <li>逻辑：酒企三季报「环比改善」信号 + 发改委扩大内需表述，资金在风险偏好极低下的被动避险选择</li>
+    </ul>
+    <div class="sec-h">医药 / CRO（低位轮动）</div>
+    <ul>
+      <li>20cm：万邦医药 301520（+20.00%）；2 板：桂林三金 002275（+9.99%，创新药/中药）；首板：百花医药 600721、九安医疗 002432、羚锐制药 600285、永安药业 002365</li>
+    </ul>
+    <div class="sec-h">商业航天 / 卫星互联网（前日主线，10-30 内部分化补跌）</div>
+    <ul>
+      <li>3 板一字：上海沪工 603131；2 板一字：盛洋科技 001270→603703、阳光照明 600261（封单 6.10 亿全市场第一）；中军：中国卫星 600118（+0.02% 冲高回落）；20cm 弹性：邵阳液压 301079（+8.21%）；首板：航天晨光 600501（-3.49%）、西部材料 002149（+3.90%）</li>
+      <li>板块当日 -4% 补跌，先锋一字顶高度、中军消化，梯队已现内部分层</li>
+    </ul>
+    <div class="sec-h">港口航运（事件驱动轮动）</div>
+    <ul>
+      <li>锦江航运 601083（+10.03% 涨停）、中远海控 601919（+7%+）；属低位防御轮动</li>
+    </ul>
+    <p class="note">首板约 40 只，连板 9 只呈「5板1 + 3板2 + 2板~5 + 首板~40」结构。<b>当日活口集中在白酒/医药/港口等低位防御方向</b>，商业航天虽保有人气但已分化补跌。低位只做有板块地位的换手前排（白酒 2 板、医药 20cm、商业航天换手弹性），不做纯情绪跟风（羊字辈高位）与退潮分支（CPO/半导体/机器人）。</p>
+  </div>
+
+  <!-- 五、亏钱效应扫描 -->
+  <h2>五、亏钱效应扫描</h2>
+  <div class="card">
+    <table>
+      <thead><tr><th>标的</th><th>代码</th><th>跌幅</th><th>题材</th><th>信号含义</th></tr></thead>
+      <tbody>
+        <tr><td>新易盛 / 天孚通信 / 中际旭创</td><td>300502 / 300394 / 300308</td><td class="down">-14.19% / -8.42% / -4.99%</td><td>CPO / 光模块</td><td rowspan="2">「易中天」三季报增速边际放缓 + 谷歌/英特尔/亚马逊财报暴雷，算力硬件系统性业绩杀；半导体净流出 56 亿</td></tr>
+        <tr><td>太辰光 / 胜宏科技 / 沪电股份</td><td>300570 / 300476 / 002463</td><td class="down">-14% / -13.31% / 跌停</td><td>CPO / PCB</td></tr>
+        <tr><td>光洋股份</td><td>002708</td><td class="down">-8.69%（4板断板）</td><td>机器人减速器</td><td rowspan="2">机器人由普涨转淘汰赛，高位松动；宇树 Q3 利润环比 -49.6% 证伪估值</td></tr>
+        <tr><td>东贝集团 / 山东矿机</td><td>601956 / 002526</td><td class="down">-10% / -10.06% 跌停</td><td>机器人</td></tr>
+        <tr><td>多伦科技 / 赛福天 / 华瓷 / 正裕</td><td>603528 / 603028 / 001216 / 603089</td><td class="down">3连跌停 / 连跌停 / 连跌停 / 连跌停</td><td>高位人气股加速出清</td><td>负反馈螺旋：连续跌停—止损—再跌停</td></tr>
+        <tr><td>文投控股 / 天娱数科 / 掌阅科技</td><td>600715 / 002354 / 603533</td><td class="down">-10.13% / -10.05% / 跌停</td><td>传媒 / 短剧 / AI 漫剧</td><td>谷歌 AI 应用焦虑从美股传导，近十股跌停</td></tr>
+        <tr><td>襄阳轴承（原空间龙）</td><td>000678</td><td class="down">-3.57%</td><td>机器人轴承</td><td>高位松动延续，仅作风向标</td></tr>
+      </tbody>
+    </table>
+    <p class="note">跌停 93 家（剔除 ST 86）、跌超 9% 达 266 只，亏钱效应集中于「CPO/半导体系统性业绩杀 + 机器人高位坍塌 + 传媒短剧退潮 + 高位连续跌停」。信号：<b>跌停反超涨停近 1.9 倍 + 红盘率 16% + 昨日涨停续涨率 48.72% = 冰点</b>；光洋/文投断板、多伦 3 连跌停显示高位负反馈未止，必须收缩仓位。</p>
+  </div>
+
+  <!-- 六、板块轮动与题材时机 -->
+  <h2>六、板块轮动与题材时机</h2>
+  <div class="card">
+    <div id="themeChart" class="chart" style="height:300px"></div>
+    <div id="sectorFundChart" class="chart" style="height:280px"></div>
+    <table style="margin-top:10px">
+      <thead><tr><th>题材</th><th>代表涨停</th><th>周期阶段</th><th>持续性</th><th>消息驱动（事件 / 方向 / 来源）</th></tr></thead>
+      <tbody>
+        <tr><td><span class="tag hot">白酒 / 大消费</span></td><td>泸州老窖/古井贡酒/迎驾贡酒/皇台酒业涨停，青岛食品 5 板，白酒 +2.84%</td><td>避险抱团（逆势）</td><td>中弱（估值底+股息，但三季报仍下滑）</td><td>① 酒企三季报「环比改善」信号（泸州老窖 Q3 营收 41.95 亿同比 -37% 但环比 +111%；中信证券「白酒周期磨底后期」判断）——<b>公司财报/机构研报利好</b>；② 发改委近期表示「以更大力度扩大内需」——<b>政策利好</b>。来源：公司财报/盘面反馈</td></tr>
+        <tr><td><span class="tag">银行 / 高股息红利</span></td><td>工行/建行/中行/中信/陕西煤业创历史新高，中国神华续创近19年新高，中石油创18年新高</td><td>防御抱团（逆势新高）</td><td>中（分红+净息差拐点，但拥挤）</td><td>① 四大行 A+H 总市值历史首破 10 万亿（10-29）；② 21 家银行中期分红超 2600 亿、六大行分红比例 30%→31%；③ Q2 净息差 1.41% 环比 +1bp（2022 年来首次转正）；④ 惠誉上调六大行生存力评级——<b>公司公告/监管数据/评级机构利好</b></td></tr>
+        <tr><td><span class="tag warn">商业航天/卫星互联网</span></td><td>上海沪工 3 板一字、盛洋/阳光照明 2 板一字、中国卫星冲高回落；板块 -4% 补跌</td><td>高位兑现补跌（前日涨停潮→分化）</td><td>弱（内部分层）</td><td>① 上海《卫星互联网创新发展行动方案 2027-2030》（10-26，2030 在轨超 3000 颗/产业 800 亿）——<b>政策利好</b>；② 国星宇航港交所聆讯、星枢计划千星部署——<b>产业事件</b>；③ 中国卫星三季报净利 +473%——<b>公司公告</b>；④ SpaceX Q3 首盈利、FCC 批 1.5 万颗——<b>海外映射利好</b>。当日补跌因前日透支+风险偏好崩，逻辑未破</td></tr>
+        <tr><td><span class="tag warn">CPO / 半导体 / 光模块</span></td><td>新易盛 -14%、太辰光 -14%、天孚 -8.4%（连跌两日）、沪电/胜宏跌停，半导体净流出 56 亿</td><td>主跌（业绩杀+海外映射）</td><td>弱（三季报兑现+资金出逃）</td><td>① 「易中天」三季报增速边际放缓（天孚 Q3 净利 8.79 亿低于预期的 9 亿+、新易盛 Q3 环比 -19%）；② 谷歌 Q3 自由现金流 -90.7 亿暴跌 12.64%、英特尔指引逊色盘后 -21%、亚马逊 TCE 自由现金流 -424 亿——<b>海外 AI 回报质疑（10-29 盘后）</b>；③ SK 海力士 -7%、亚洲芯片股共振；④ 泰国洪水致新易盛/中际出货延后——<b>公司财报/美股/产业</b></td></tr>
+        <tr><td><span class="tag warn">机器人（人形）</span></td><td>光洋 4 板断板 -8.69%、东贝/山东矿机跌停，宇树 Q3 利润环比 -49.6%</td><td>退潮（淘汰赛）</td><td>弱（高位单薄，老龙头出清）</td><td>① 宇树科技上市后首份三季报「增收不增利」（Q3 净利环比 -49.6%，研发/销售费用激增）——<b>公司财报利空</b>；② 特斯拉 Q3 Optimus 量产线试产（10-22）前期利好已兑现；③ 数采中心退潮（北京首钢园停运、代理数采降价 50%+）——<b>产业观点</b></td></tr>
+        <tr><td><span class="tag">医药 / CRO</span></td><td>万邦医药 20cm、百花医药/桂林三金涨停</td><td>低位轮动补涨</td><td>中弱（容量有限）</td><td>暂无明确强催化，属低位避险轮动（<b>暂无消息面数据</b>，以盘面反馈为主）</td></tr>
+        <tr><td><span class="tag">港口航运</span></td><td>锦江航运涨停、中远海控 +7%</td><td>事件驱动轮动</td><td>中（季节性/低位）</td><td>暂无单一强催化，属低位防御轮动（<b>暂无消息面数据</b>，以盘面反馈为主）</td></tr>
+      </tbody>
+    </table>
+    <p class="note">行业涨幅（申万一级）：食品饮料 +2.84%、交通运输 +0.91%、石油石化 +0.91%、银行 +0.51% 居前；通信 -6.48%、传媒 -5.39%、电子 -5.11%、计算机 -4.80%、军工 -5.06% 居后。资金真实去向：仅白酒（+25 亿）、医药生物（+17 亿）、食品饮料（+17 亿）、高股息精选（+14.29 亿）、证金持股（+13.42 亿）获净流入；电子净流出 65 亿、半导体净流出 56 亿、通信净流出 46 亿、计算机净流出 33 亿居首。这是「防御抱团 + 成长出清」的极致分化格局。</p>
+  </div>
+
+  <!-- 七、连板天梯 -->
+  <h2>七、连板天梯（9只，高度坍缩）</h2>
+  <div class="card">
+    <div id="ladderChart" class="chart" style="height:240px"></div>
+    <p class="note">5 板 1 只（青岛食品）、8 天 4 板 1 只（东方海洋）、3 板 2 只（上海沪工/澳洋健康）、2 板约 5 只（阳光照明/盛洋科技/巴比食品/桂林三金/传智教育）、首板约 40 只 → 「5板1 + 3板2 + 2板~5 + 首板~40」的<b>高度坍缩结构</b>。<b>空间高度 5 板为孤立高点（青岛食品公司事件驱动）、3 板以上仅 3 只 = 中位接力资金几近消失</b>；商业航天（上海沪工 3 板）是唯一梯队完整题材但已一字化。连板晋级率 30%，退潮冰点特征明确。</p>
+  </div>
+
+  <!-- 八、龙虎榜博弈 -->
+  <h2>八、龙虎榜博弈（资金博弈解读）</h2>
+  <div class="card">
+    <p class="note">说明：龙虎榜席位明细数据源本次未覆盖完整席位级，以下以「龙虎榜净买卖 + 主力资金净流向」双口径解读近期活跃个股博弈（来源同数据后端，非完整龙虎榜席位）。</p>
+    <table>
+      <thead><tr><th>标的</th><th>代码</th><th>资金动向</th><th>解读</th></tr></thead>
+      <tbody>
+        <tr><td>泸州老窖</td><td>000568</td><td>龙虎榜净买 4.61 亿（全市场第二），主力净流入 5.22 亿；深股通买 4.05 亿、四机构净买数亿</td><td>白酒容量龙，机构+外资低换手共振抢筹，退潮日最干净做多结构</td></tr>
+        <tr><td>宁德时代</td><td>300750</td><td>主力净流入 10.90 亿（全市场第一），但 5 日 -4.48 亿、10 日 -57 亿</td><td>超跌单日反抽非趋势回流，固态电池主题，持续性待验</td></tr>
+        <tr><td>金安国纪</td><td>002636</td><td>主力净流入 8.18 亿（第二），但龙虎榜机构净卖 1.1~1.6 亿、游资接力</td><td>PCB 覆铜板涨价逻辑，机构卖、游资买，情绪股结构</td></tr>
+        <tr><td>光洋股份</td><td>002708</td><td>龙虎榜净买 1.53 亿但股价 -8.69%；机构净买约 1.6 亿、深股通净买 0.43 亿，游资（中山东路/陆家嘴）净卖</td><td>机构跌停附近承接、游资出货，机器人退潮博弈样本</td></tr>
+        <tr><td>海洋王 / 大业股份</td><td>002724 / 603278</td><td>龙虎榜净买 6.95 亿 / 3.94 亿，但主力资金净流出 0.93 亿 / -0.06 亿</td><td>龙虎榜大额净买与主力净流出背离，伪强势标的，风险显著</td></tr>
+        <tr><td>邵阳液压 / 冰山冷热</td><td>301079 / 000530</td><td>龙虎榜净卖 0.78 亿 / 1.21 亿（游资出货），机构小幅接盘</td><td>高换手游资出货、机构接飞刀，退潮日典型派面形态</td></tr>
+      </tbody>
+    </table>
+    <p class="note">当日资金呈「机构/外资抱团白酒 + 红利防御，游资集中净卖高位情绪股（邵阳/冰山/天娱/襄阳）」格局。机构整体仅净买 2.61 亿（20 买 / 23 卖），态度偏谨慎；净流出超 1 亿个股达 148 只、是净流入个股的 2.5 倍。龙虎榜与主力资金交叉验证：泸州老窖、埃斯顿、金安国纪为双重验证核心；海洋王、大业股份则是「只有龙虎榜数据支撑、主力未跟上」的伪强势，需警惕数据噪音。</p>
+  </div>
+
+  <!-- 九、风险评估与仓位纪律 -->
+  <h2>九、风险评估与仓位纪律</h2>
+  <div class="card">
+    <ul>
+      <li><b>仓位上限：</b>冰点日，总仓 ≤ 20%（破线即减），单票 ≤ 5%；不融资、不杠杆抄底。</li>
+      <li><b>买点纪律：</b>只做「条件触发」——红利防御回踩（神华/工行/建行不破 5 日线）、白酒低位换手（泸州/古井回踩 5 日线）；商业航天仅看中国卫星换手分歧小仓（缩量不接）。<b>不接一字高标（青岛/上海沪工/阳光照明/盛洋）、退潮科技（CPO/半导体/机器人老龙头）、传媒短剧、羊字辈高位、中位断层</b>。</li>
+      <li><b>止损纪律：</b>跌破介入逻辑位（分时低点 / 5 日线）且放量 → 当日减仓，不留隔夜错误；红利仓一旦「情绪修复信号」出现即止盈/降仓（防拥挤补跌）。</li>
+      <li><b>最大风险：</b>① 1.67 万亿放量下跌，恐慌未释放完、承接力弱；② 跌停 93 家反超涨停近 1.9 倍，中位接力即 A 杀；③ 红利拥挤度 57.37% 上行，风险偏好回暖时易补跌；④ 10 月收官双创月跌超 23%、创业板较 6 月高点回撤超 44%，趋势空头排列；⑤ 外围待验证：谷歌/英特尔/亚马逊财报余波 + 11 月美联储加息预期。</li>
+    </ul>
+  </div>
+
+  <!-- 十、次日操作计划 + 开盘关注清单 -->
+  <h2>十、次日（11-02 周一）操作计划</h2>
+  <p class="note">注：次日日历日 11-02 为周一，A 股正常交易日（10-31 周六、11-01 周日休市），下列计划条件针对该日。</p>
+
+  <div class="plan">
+    <div class="t">① 容量中军 / 防御回踩（主战方向，红利+白酒防御）</div>
+    红利防御：<b>中国神华 601088、工商银行 601398、建设银行 601939</b>（高股息，创历史新高后回踩 5 日线企稳不破 → 低吸）；白酒容量：<b>贵州茅台 600519、五粮液 000858</b>（三季报环比改善 + 机构净买，回踩 5 日线企稳 → 低吸）。<br>
+    <b>条件</b>：所属板块（煤炭/银行/白酒）主力净流入非负、分时回踩 5 日线企稳不补跌 → <b>操作</b>：分批低吸，单票 ≤ 5% 仓。<b>止损</b>：收盘跌破 5 日线且未收回 → 出。剔除已大幅偏离 5 日线超买的一字高标；CPO/半导体中军（中际旭创/新易盛/天孚通信）已破线且板块净流出，列入回避，不抄底。
+  </div>
+
+  <div class="plan">
+    <div class="t">② 绝对高位（只看换手分歧低吸，严禁追一字）</div>
+    商业航天中军：<b>中国卫星 600118</b>（回踩不破 5 日线 + 换手充分后的分歧低吸，≤3% 仓，缩量不接）；高标：青岛食品 001219（5 板一字）、上海沪工 603131（3 板一字）、江顺科技 001400（4 天 3 板）、东贝集团 601956（3 板跌停）、光洋股份 002708（4 板断板）→ <b>一律一字/断板/未晋级，不接，仅作风向标</b>。
+  </div>
+
+  <div class="plan">
+    <div class="t">③ 低位试错（白酒/医药/商业航天换手前排 + 港口，须叠加题材净流为正）</div>
+    白酒/医药：<b>巴比食品 605339（2 板）、桂林三金 002275（2 板）、万邦医药 301520（20cm）</b>；商业航天换手：<b>邵阳液压 301079（20cm 弹性）、航天晨光 600501（首板）</b>；港口：<b>锦江航运 601083</b>。条件：竞价量＞昨日 1/3、开盘不破 0 轴、<b>所属题材主力净流入为正</b>（一票否决前置）、封单质量尚可；<b>剔除一字高标（上海沪工/盛洋/阳光照明）、无硬逻辑跟风、退潮科技与传媒分支</b>。
+  </div>
+
+  <div class="plan">
+    <div class="t">④ 回避 / 风险区</div>
+    CPO/半导体高位（新易盛 300502、天孚通信 300394、中际旭创 300308、沪电股份 002463、胜宏科技 300476）/ 机器人老龙头退潮（赛福天 603028、多伦科技 603528、华瓷股份 001216、正裕工业 603089）/ 传媒短剧（天娱数科 002354、掌阅科技 603533）/ 高位连续跌停（襄阳轴承 000678、多伦 3 连跌停）/ 羊字辈高位（百洋股份 002696、大洋电机 002249）/ 纯一字高标（阳光照明 600261、盛洋科技 603703）→ 一律高风险区，不接力。（注：上海沪工/青岛食品/江顺/东贝/光洋/山东矿机/文投等为 ②③ 观察标的，仅风向标，非回避区）</td>
+  </div>
+
+  <div class="watch">
+    <div class="sec-h" style="margin-top:0">📌 次日（11-02）开盘关注清单（信号 = 操作）</div>
+    <ul>
+      <li><b>必须强于旧主线的方向：</b>白酒/银行延续（茅台/工行不破位）、商业航天上海沪工能否换手晋级（一字开板即风险信号），确认防御主线延续可极小仓分歧低吸。</li>
+      <li><b>容量票不能破位：</b>创业板权重（宁德时代/中际旭创/新易盛）能否止跌 → 未企稳则指数仍探底风险，全线防守至 ≤10%。</li>
+      <li><b>高位票不能闷杀：</b>青岛食品 5 板能否弱转强（一字孤立，开板即 A 杀）、上海沪工开板承接、光洋/东贝是否继续杀跌 → 高位坍塌信号，收缩至 ≤10%。</li>
+      <li><b>退潮信号 = 减仓动作：</b>涨停＜40 / 跌停＞60 / 红盘率＜15% / 成交跌破 1.5 万亿 / 红利补跌 → 立即减仓至 ≤10%。</li>
+      <li><b>正反馈锚：</b>跌停＜40 + 成交守住 1.6 万亿 + 白酒/红利延续 + 成长止跌 → 可加回仓位至 ≤20%。</li>
+      <li><b>外围变量：</b>美股科技（谷歌/英特尔/亚马逊财报余波）与 11 月美联储加息预期，是算力硬件能否止跌的关键窗口，开盘前需确认。</li>
+    </ul>
+  </div>
+
+  <div class="footer">
+    数据来源：domain_search（聚合 westock-data 结构化行情、neodata 市场宽度与资金流、公开财经媒体收盘复盘），复盘日 2026-10-30 收盘数据。<br>
+    附：前一日（10-29）计划复盘——纪律/方向口径命中 4/4（防守框架零失误）；严格买点触发 2/3 条目（神华 +0.72%、邵阳液压 +8.21%），误判 0 条；上海沪工/青岛一字涨停因机械不可买属「赚不到」非「误判」。<br>
+    以上分析基于公开数据，不构成投资建议。短线博弈高风险，请独立决策、严守止损。
+  </div>
+
+</div>
+
+<script>
+// 图1：主要指数涨跌幅（2026-10-30，放量破位杀跌）
+(function(){
+  var c=echarts.init(document.getElementById('idxChart'));
+  c.setOption({
+    title:{text:'主要指数涨跌幅（2026-10-30，放量破位杀跌）',left:'center',textStyle:{fontSize:13}},
+    tooltip:{trigger:'axis',axisPointer:{type:'shadow'}},
+    grid:{left:60,right:20,top:40,bottom:30},
+    xAxis:{type:'category',data:['上证指数','深证成指','创业板指','科创50','北证50']},
+    yAxis:{type:'value',name:'涨跌幅%',axisLabel:{formatter:'{value}%'}},
+    series:[
+      {name:'涨跌幅%',type:'bar',
+        data:[-1.44,-2.73,-4.13,-5.48,-2.68],
+        itemStyle:{color:function(p){return p.value<0?'#2d6a4f':'#e63946';}},
+        label:{show:true,position:'top',formatter:'{c}%'}}
+    ]
+  });
+})();
+
+// 图2：行业主力资金净流向（红=净流入 绿=净流出，亿元）
+(function(){
+  var d=[['白酒',25],['医药生物',17],['食品饮料',17],['高股息精选',14.29],['证金持股',13.42],['石油石化',0.9],
+        ['机械设备',-12.95],['计算机',-33.46],['通信',-46.23],['半导体',-56.14],['电子',-65.25]];
+  var c=echarts.init(document.getElementById('fundChart'));
+  c.setOption({
+    title:{text:'行业主力净流向（2026-10-30，亿元，红=流入 绿=流出）',left:'center',textStyle:{fontSize:13}},
+    tooltip:{trigger:'axis',axisPointer:{type:'shadow'}},
+    grid:{left:110,right:50,top:40,bottom:30},
+    xAxis:{type:'value',axisLabel:{formatter:'{value}亿'}},
+    yAxis:{type:'category',data:d.map(function(x){return x[0];})},
+    series:[{type:'bar',data:d.map(function(x){return {value:x[1],itemStyle:{color:x[1]<0?'#2d6a4f':'#e63946'}};}),
+      label:{show:true,position:'right',formatter:'{c}亿'}}]
+  });
+})();
+
+// 图3：行业涨跌幅 Top（%，食品饮料领涨、通信电子领跌）
+(function(){
+  var d=[['食品饮料',2.84],['交通运输',0.91],['石油石化',0.91],['银行',0.51],['煤炭',0.42],['医药生物',0.30],
+        ['军工',-5.06],['电子',-5.11],['传媒',-5.39],['通信',-6.48]];
+  d.sort(function(a,b){return a[1]-b[1];});
+  var c=echarts.init(document.getElementById('themeChart'));
+  c.setOption({
+    title:{text:'行业涨跌幅 Top（2026-10-30，%，食品饮料领涨、通信电子领跌）',left:'center',textStyle:{fontSize:13}},
+    tooltip:{trigger:'axis',axisPointer:{type:'shadow'}},
+    grid:{left:90,right:50,top:40,bottom:30},
+    xAxis:{type:'value',axisLabel:{formatter:'{value}%'}},
+    yAxis:{type:'category',data:d.map(function(x){return x[0];})},
+    series:[{type:'bar',data:d.map(function(x){return {value:x[1],itemStyle:{color:x[1]<0?'#2d6a4f':'#e63946'}};}),
+      label:{show:true,position:'right',formatter:'{c}%'}}]
+  });
+})();
+
+// 图4：个股主力净流入 Top（亿元，东财口径）
+(function(){
+  var d=[['宁德时代',10.90],['金安国纪',8.18],['五粮液',7.33],['埃斯顿',5.30],['泸州老窖',5.22],['贵州茅台',4.71],['皇台酒业',2.26],['古井贡酒',1.54]];
+  var c=echarts.init(document.getElementById('sectorFundChart'));
+  c.setOption({
+    title:{text:'个股主力净流入 Top（2026-10-30，亿元，红=流入）',left:'center',textStyle:{fontSize:13}},
+    tooltip:{trigger:'axis',axisPointer:{type:'shadow'}},
+    grid:{left:80,right:50,top:40,bottom:30},
+    xAxis:{type:'value',axisLabel:{formatter:'{value}亿'}},
+    yAxis:{type:'category',data:d.map(function(x){return x[0];})},
+    series:[{type:'bar',data:d.map(function(x){return {value:x[1],itemStyle:{color:'#e63946'}};}),
+      label:{show:true,position:'right',formatter:'{c}亿'}}]
+  });
+})();
+
+// 图5：连板高度分布（高度坍缩，5板为孤立空间顶）
+(function(){
+  var d=[['5板(青岛食品)',1],['3板(上海沪工/澳洋)',2],['2板(约5只)',5],['首板(约40只)',40]];
+  var c=echarts.init(document.getElementById('ladderChart'));
+  c.setOption({
+    title:{text:'连板高度分布（2026-10-30，只数，空间压缩至5板）',left:'center',textStyle:{fontSize:13}},
+    tooltip:{trigger:'axis',axisPointer:{type:'shadow'}},
+    grid:{left:130,right:40,top:40,bottom:30},
+    xAxis:{type:'value',name:'只数'},
+    yAxis:{type:'category',data:d.map(function(x){return x[0];})},
+    series:[{type:'bar',data:d.map(function(x){
+        var v=x[1];
+        var color = v>=4 ? '#e63946' : (v===3 ? '#d97706' : (v===2 ? '#2d6a4f' : '#9ca3af'));
+        return {value:v,itemStyle:{color:color}};
+      }),
+      label:{show:true,position:'right'}}]
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A股短线博弈复盘 — 2026-10-21（次日计划 10-22）</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+  :root{--bg:#f7f8fa;--card:#fff;--text:#1c1917;--muted:#6b7280;--border:#e5e7eb;
+        --accent:#1d4ed8;--red:#e63946;--green:#2d6a4f;--amber:#d97706;--soft:#f1f5f9;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,"PingFang SC","Noto Sans SC","Microsoft YaHei",sans-serif;
+       background:var(--bg);color:var(--text);line-height:1.6;padding:24px 14px}
+  .container{max-width:960px;margin:0 auto}
+  .header{background:linear-gradient(135deg,#1e3a8a,#1d4ed8);color:#fff;border-radius:14px;padding:22px 24px;margin-bottom:16px}
+  .header h1{font-size:1.35rem;font-weight:700}
+  .header .meta{opacity:.85;font-size:.85rem;margin-top:6px}
+  .verdict{background:#fff;border:1px solid var(--border);border-left:5px solid var(--amber);
+           border-radius:10px;padding:14px 18px;margin-bottom:16px;font-size:.95rem}
+  .verdict b{color:var(--amber)}
+  h2{font-size:1.1rem;font-weight:700;margin:26px 0 12px;padding-bottom:6px;border-bottom:2px solid var(--accent);color:var(--accent)}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px 18px;margin-bottom:14px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:12px}
+  .kpi{background:var(--soft);border-radius:8px;padding:10px 12px;text-align:center}
+  .kpi .v{font-size:1.25rem;font-weight:700}
+  .kpi .l{font-size:.75rem;color:var(--muted)}
+  .up{color:var(--red)} .down{color:var(--green)}
+  table{width:100%;border-collapse:collapse;font-size:.85rem;margin-top:6px}
+  th,td{padding:7px 9px;text-align:left;border-bottom:1px solid var(--border)}
+  th{color:var(--muted);font-weight:600;background:var(--soft)}
+  .tag{display:inline-block;font-size:.72rem;padding:1px 7px;border-radius:999px;background:#e0e7ff;color:#1e40af;margin:1px}
+  .tag.hot{background:#fee2e2;color:#b91c1c}
+  .tag.warn{background:#fef3c7;color:#b45309}
+  .sec-h{font-weight:700;margin:10px 0 4px}
+  .plan{background:var(--soft);border-radius:8px;padding:12px 14px;margin:8px 0;font-size:.88rem}
+  .plan .t{font-weight:700;color:var(--accent)}
+  .chart{width:100%;height:300px}
+  ul{margin:6px 0 6px 18px;font-size:.88rem}
+  li{margin:3px 0}
+  .watch{background:#fff;border:1px dashed var(--accent);border-radius:10px;padding:14px 16px;margin:10px 0}
+  .watch li{margin:4px 0}
+  .footer{margin-top:28px;padding-top:12px;border-top:1px solid var(--border);color:var(--muted);font-size:.78rem;text-align:center}
+  .note{font-size:.78rem;color:var(--muted);margin-top:8px}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <h1>A股短线博弈复盘</h1>
+    <div class="meta">复盘日：2026-10-21（周三）｜ 次日计划：2026-10-22（周四）｜ 数据后端：通达信(tdx-connector)</div>
+  </div>
+
+  <div class="verdict">
+    <b>一句话定性：分歧 / 局部抱团（指数弱 + 主线强）。</b>
+    三大指数全线下跌（创业板 -1.62% 最弱），广度差（深市涨1127 / 跌1687），三指主力合计净流出约 74 亿；但涨停 50 只、跌停仅 5 只、连板 16 只——短线情绪没崩，钱集中在「半导体硬件容量中军 + 人形机器人高度」上抱团。
+    <b>次日策略：中仓位、控回撤，只做主线容量中军的回踩低吸 + 低位一进二，严禁追缩量一字中位股。</b>
+  </div>
+
+  <!-- 一、大盘概览 -->
+  <h2>一、大盘概览</h2>
+  <div class="card">
+    <div class="grid">
+      <div class="kpi"><div class="v down">3713.03</div><div class="l">上证指数 -0.60%</div></div>
+      <div class="kpi"><div class="v down">11704.35</div><div class="l">深证成指 -0.82%</div></div>
+      <div class="kpi"><div class="v down">2694.71</div><div class="l">创业板指 -1.62%</div></div>
+      <div class="kpi"><div class="v down">≈ -74亿</div><div class="l">三指主力净流出</div></div>
+      <div class="kpi"><div class="v up">50 / 5</div><div class="l">涨停 / 跌停</div></div>
+      <div class="kpi"><div class="v up">16</div><div class="l">连板家数</div></div>
+    </div>
+    <div id="idxChart" class="chart"></div>
+    <p class="note">指数中期仍在下行通道：上证 20日 -3.9%、创业板 60日 -26.9%、年初至今 -15.9%。广度与指数背离——这是「少数主线抱团、多数个股走弱」的典型结构，按市场状态框架属「局部抱团（风险）」而非全面赚钱效应。</p>
+  </div>
+
+  <!-- 二、周期定位 -->
+  <h2>二、情绪周期定位</h2>
+  <div class="card">
+    <ul>
+      <li><b>量温度：</b>涨停 50、跌停 5、连板 16 → 情绪偏强但分化（指数弱拖后腿）。</li>
+      <li><b>识主线：</b>人形机器人（绝对主线，高度+弹性+中军齐备）＞ 数据要素/AI（辅线发酵）＞ 半导体硬件（主力容量聚集，偏机构）；消费/医药为事件驱动支线。</li>
+      <li><b>测亏钱效应：</b>跌停仅 5 只且多为「个股调整」，无主线集体崩塌；但<b>上海洗霸（液冷）、锦龙股份（算力租赁）今日跌停</b> → 液冷/算力租赁细分出现局部退潮，需盯。</li>
+      <li><b>空仓检验：</b>若只看指数会空仓踏空；但高位缩量一字（大业/海洋王）赔率差，舒适买点只在「容量中军回踩」与「低位一进二」。</li>
+    </ul>
+    <p class="note">周期判断：机器人处于<b>发酵→高潮早期</b>，数据要素处于<b>启动→发酵</b>，半导体硬件处于<b>机构承接的温和主升</b>。结论：可积极但不追高，做「强逻辑 + 低吸」。</p>
+  </div>
+
+  <!-- 三、龙头梯队：绝对高位 -->
+  <h2>三、龙头梯队 · 绝对高位（空间板）</h2>
+  <div class="card">
+    <table>
+      <thead><tr><th>标的</th><th>代码</th><th>板数</th><th>属性</th><th>板型</th><th>次日定位</th></tr></thead>
+      <tbody>
+        <tr><td>大业股份</td><td>603278</td><td><span class="up">4板</span></td><td>人形机器人（灵巧手钢丝）</td><td>一字（封成比543）</td><td>情绪风向标，不接</td></tr>
+        <tr><td>海洋王</td><td>002724</td><td><span class="up">4板</span></td><td>光学/粤港澳</td><td>一字</td><td>情绪风向标，不接</td></tr>
+        <tr><td>东安动力</td><td>600178</td><td><span class="up">4板</span></td><td>低空经济/飞行汽车</td><td>T字换手</td><td>4板中唯一有换手，可小仓试错</td></tr>
+        <tr><td>百洋股份</td><td>002696</td><td><span class="up">9天7板</span></td><td>消费/国改/海洋经济</td><td>高位抱团妖股</td><td>只观察，破5日线=退潮信号</td></tr>
+        <tr><td>润建股份</td><td>002929</td><td><span class="up">3板</span></td><td>储能/数据要素</td><td>换手3板</td><td>中位股，看换手承接</td></tr>
+      </tbody>
+    </table>
+    <p class="note">绝对高位三要点：① 大业/海洋王缩量一字，接盘赔率最差，仅作高度锚；② 东安动力是唯一可参与的高度换手板；③ 百洋股份（9天7板）是独立抱团妖股，代表风险偏好上限。</p>
+  </div>
+
+  <!-- 四、低位试错：绝对低位 -->
+  <h2>四、低位试错 · 绝对低位（首板 / 一进二）</h2>
+  <div class="card">
+    <div class="sec-h">数据要素 / AI（辅线低位）</div>
+    <ul>
+      <li>南威软件 603636（4天3板，数据要素+AI智能体）→ 断板换手回封可看</li>
+      <li>太极股份 002368、天威视讯 002238、海量数据 603138（首板）→ 次日一进二条件：竞价量＞昨日1/3 且开盘不破0轴</li>
+    </ul>
+    <div class="sec-h">机器人 20cm 弹性（低位高弹性）</div>
+    <ul>
+      <li>敏芯股份 688286、三维天地 301159、慧辰股份 688500（20cm涨停，机器人+数据）→ 看趋势延续或二板</li>
+      <li>利亚德 300296（20cm+主净5.8亿，机器人+MicroLED）→ 容量弹性龙头</li>
+    </ul>
+    <div class="sec-h">半导体硬件补涨（主力中军已动，寻低位联动）</div>
+    <ul>
+      <li>云南锗业 002428（+6.5%、主净4.4亿）、德明利 001309（+6.5%、主净4.2亿）→ 中军带动下的弹性补涨</li>
+    </ul>
+  </div>
+
+  <!-- 五、亏钱效应扫描 -->
+  <h2>五、亏钱效应扫描</h2>
+  <div class="card">
+    <table>
+      <thead><tr><th>标的</th><th>代码</th><th>跌幅</th><th>题材</th><th>信号含义</th></tr></thead>
+      <tbody>
+        <tr><td>锦龙股份</td><td>000712</td><td class="down">-10.02%</td><td>证券/算力租赁</td><td>算力租赁方向退潮</td></tr>
+        <tr><td>上海洗霸</td><td>603200</td><td class="down">-10.00%</td><td>液冷服务器</td><td class="tag warn">液冷局部退潮⚠</td></tr>
+        <tr><td>时代万恒</td><td>600241</td><td class="down">-9.99%</td><td>镍氢电池</td><td>高位股分歧（17次上榜）</td></tr>
+        <tr><td>吉华集团</td><td>603980</td><td class="down">-10.00%</td><td>创新药</td><td>个股调整</td></tr>
+        <tr><td>盐津铺子</td><td>002847</td><td class="down">-10.00%</td><td>休闲食品</td><td>消费高位补跌</td></tr>
+      </tbody>
+    </table>
+    <p class="note">整体亏钱效应极轻（仅5只跌停），但<b>液冷（上海洗霸）、算力租赁（锦龙）</b>两个前期热门细分今日跌停，是退潮的最早裂缝——次日重点盯这两方向的修复与否。</p>
+  </div>
+
+  <!-- 六、板块轮动与题材时机 -->
+  <h2>六、板块轮动与题材时机</h2>
+  <div class="card">
+    <div id="themeChart" class="chart" style="height:280px"></div>
+    <table style="margin-top:10px">
+      <thead><tr><th>题材</th><th>代表涨停</th><th>周期阶段</th><th>持续性</th></tr></thead>
+      <tbody>
+        <tr><td><span class="tag hot">人形机器人</span></td><td>大业/利亚德/泰尔/敏芯/三维天地</td><td>发酵→高潮早期</td><td>强（高度+弹性+中军齐）</td></tr>
+        <tr><td><span class="tag">数据要素/AI</span></td><td>南威/太极/天威/海量数据</td><td>启动→发酵</td><td>中（缺大容量中军）</td></tr>
+        <tr><td><span class="tag hot">半导体硬件</span></td><td>兆易/澜起/沪电/生益/天孚</td><td>机构温和主升</td><td>较强（主力净流入最集中）</td></tr>
+        <tr><td><span class="tag">储能/核聚变</span></td><td>润建/雪人/三变科技</td><td>发酵</td><td>中（液冷分支退潮）</td></tr>
+        <tr><td><span class="tag">医药(铁死亡)</span></td><td>莱美/北大/中恒/四环</td><td>事件驱动</td><td>待验</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 七、连板梯队 -->
+  <h2>七、连板天梯（16只，昨日连板延续）</h2>
+  <div class="card">
+    <div id="ladderChart" class="chart" style="height:260px"></div>
+    <p class="note">晋级率高（16只全数延续涨停），说明连板溢价仍在。但 4 板三剑客中两只是缩量一字，中位接力赔率差。<b>连板结构健康，风险在「缩量加速」而非「断板」。</b></p>
+  </div>
+
+  <!-- 八、龙虎榜博弈 -->
+  <h2>八、龙虎榜博弈（近期活跃个股）</h2>
+  <div class="card">
+    <table>
+      <thead><tr><th>标的</th><th>代码</th><th>近20日上榜</th><th>最新</th><th>解读</th></tr></thead>
+      <tbody>
+        <tr><td>时代万恒</td><td>600241</td><td>17次</td><td class="down">今日跌停</td><td>高频换手→分歧，高位股退潮信号</td></tr>
+        <tr><td>金健米业</td><td>600127</td><td>16次</td><td>—</td><td>资金反复博弈（农业/消费）</td></tr>
+        <tr><td>超声电子</td><td>000823</td><td>12次</td><td>今日上榜</td><td>PCB 方向活跃承接</td></tr>
+        <tr><td>冰山冷热</td><td>000530</td><td>12次</td><td>今日上榜</td><td>设备/制冷反复活跃</td></tr>
+        <tr><td>沈鼓集团</td><td>601091</td><td>11次</td><td>今日上榜</td><td>高端装备资金关注</td></tr>
+      </tbody>
+    </table>
+    <p class="note">龙虎榜活跃股偏「设备/制造/军工」，与主线（机器人/半导体）有交集但不完全重合；时代万恒高频上榜却今日跌停，印证高位股分歧正在放大。</p>
+  </div>
+
+  <!-- 九、风险评估与仓位纪律 -->
+  <h2>九、风险评估与仓位纪律</h2>
+  <div class="card">
+    <ul>
+      <li><b>仓位上限：</b>分歧日单总仓 ≤ 60%，单票 ≤ 20%；不融资加杠杆追高。</li>
+      <li><b>买点纪律：</b>只做「条件触发」——容量中军回踩5日线/均价线企稳、低位一进二竞价达标；<b>不接缩量一字、不接中位加速</b>。</li>
+      <li><b>止损纪律：</b>跌破介入逻辑位（分时低点/5日线）且放量 → 当日减仓，不留隔夜错误。</li>
+      <li><b>最大风险：</b>指数下行通道 + 高位抱团（百洋9天7板、4板一字）一旦分歧，回撤极快。</li>
+    </ul>
+  </div>
+
+  <!-- 十、明日策略 + 开盘关注清单 -->
+  <h2>十、次日（10-22）操作计划</h2>
+
+  <div class="plan">
+    <div class="t">① 容量中军（主战方向：回踩低吸，不追高）</div>
+    半导体硬件链（存储/PCB/CPO）：<b>兆易创新、沪电股份、澜起科技、生益科技、天孚通信、德明利、光库科技</b>。<br>
+    <b>条件</b>：今日主力大幅净流入后，次日不补跌、分时回踩5日线/均价线企稳 → <b>操作</b>：分批低吸，单票≤20%仓。<b>止损</b>：跌破今日低点且放量 → 出。<br>
+    利通电子 603629（涨停+主净8.6亿）已板，次日只看换手承接，不开新仓追。
+  </div>
+
+  <div class="plan">
+    <div class="t">② 绝对高位（只看分歧低吸，严禁追缩量一字）</div>
+    东安动力 600178（4板T字换手）：早盘放量分歧后回封（换手充分）→ 小仓试错；若缩量一字或高开秒板 → 不碰。<br>
+    大业股份 / 海洋王：无换手不接，仅作情绪风向标。百洋股份 9天7板：纯观察，破5日线即退潮信号。
+  </div>
+
+  <div class="plan">
+    <div class="t">③ 低位试错（一进二 / 首板补涨）</div>
+    数据要素：南威软件断板换手回封可看；太极股份/天威视讯/海量数据 → 一进二条件（竞价量＞昨日1/3、开盘不破0轴）。<br>
+    机器人20cm：敏芯股份/三维天地/慧辰股份 → 看趋势延续或二板。
+  </div>
+
+  <div class="plan">
+    <div class="t">④ 回避 / 风险区</div>
+    上海洗霸（液冷）、锦龙股份（算力租赁）今日跌停 → 这两细分方向暂回避，等修复信号。<br>
+    中位股（大业/海洋王缩量一字、润建3板缩量）→ 一律高风险区，不接力。
+  </div>
+
+  <div class="watch">
+    <div class="sec-h" style="margin-top:0">📌 次日开盘关注清单（信号=操作）</div>
+    <ul>
+      <li><b>必须强于旧主线的方向：</b>半导体硬件中军（兆易/沪电/天孚）开盘不补跌、分时站稳均价线 → 确认主线延续，可低吸。</li>
+      <li><b>容量票不能破位：</b>利通电子、兆易创新、沪电股份 若集体低开破5日线 → 降仓信号。</li>
+      <li><b>高位票不能闷杀：</b>4板空间板（大业/海洋王/东安）出现≥2只大幅低开或跌停 → 高度坍塌，全线防守。</li>
+      <li><b>退潮信号：</b>跌停家数从5只扩大至＞20只 / 连板晋级率骤降 / 液冷·算力租赁无修复反而扩散跌停 → 立即减仓至≤30%。</li>
+      <li><b>正反馈锚：</b>东安动力换手晋级5板、南威软件一进二成功 → 情绪延续，可加回仓位。</li>
+    </ul>
+  </div>
+
+  <div class="footer">
+    数据来源：通达信(tdx-connector) 实时行情 / 条件选股 / 龙虎榜接口，复盘日 2026-10-21 收盘数据。<br>
+    以上分析基于公开数据，不构成投资建议。短线博弈高风险，请独立决策、严守止损。
+  </div>
+
+</div>
+
+<script>
+// 图1：三大指数涨跌 + 主力净流出
+(function(){
+  var c=echarts.init(document.getElementById('idxChart'));
+  c.setOption({
+    title:{text:'三大指数表现（2026-10-21）',left:'center',textStyle:{fontSize:13}},
+    tooltip:{},
+    grid:{left:60,right:20,top:40,bottom:30},
+    xAxis:{type:'category',data:['上证指数','深证成指','创业板指']},
+    yAxis:[
+      {type:'value',name:'涨跌幅%',axisLabel:{formatter:'{value}%'}},
+      {type:'value',name:'主力净流出(亿)',position:'right'}
+    ],
+    series:[
+      {name:'涨跌幅%',type:'bar',data:[-0.60,-0.82,-1.62],
+        itemStyle:{color:function(p){return p.value<0?'#2d6a4f':'#e63946';}},
+        label:{show:true,position:'top',formatter:'{c}%'}},
+      {name:'主力净流出(亿)',type:'line',yAxisIndex:1,
+        data:[20.3,28.3,25.7],itemStyle:{color:'#d97706'},
+        label:{show:true,formatter:'{c}亿'}}
+    ]
+  });
+})();
+
+// 图2：主力净流入 Top10
+(function(){
+  var d=[['利通电子',8.65],['兆易创新',8.23],['杰瑞股份',7.88],['天孚通信',7.84],
+         ['平潭发展',6.30],['沪电股份',6.29],['利亚德',5.76],['澜起科技',5.09],
+         ['生益科技',4.51],['云南锗业',4.39]];
+  d.sort(function(a,b){return a[1]-b[1];});
+  var c=echarts.init(document.getElementById('themeChart'));
+  c.setOption({
+    title:{text:'主力净流入 Top10（亿元，2026-10-21）',left:'center',textStyle:{fontSize:13}},
+    tooltip:{},grid:{left:70,right:40,top:40,bottom:30},
+    xAxis:{type:'value'},
+    yAxis:{type:'category',data:d.map(function(x){return x[0];})},
+    series:[{type:'bar',data:d.map(function(x){return x[1];}),
+      itemStyle:{color:'#e63946'},
+      label:{show:true,position:'right',formatter:'{c}亿'}}]
+  });
+})();
+
+// 图4：连板高度分布（绑定 section七 容器）
+(function(){
+  var d=[['百洋股份(9天7板)',7],['大业股份(4板)',4],['海洋王(4板)',4],['东安动力(4板)',4],
+         ['润建股份(3板)',3],['星光/南威(4天3板)',3],['多只2板',2]];
+  d.sort(function(a,b){return a[1]-b[1];});
+  var c=echarts.init(document.getElementById('ladderChart'));
+  c.setOption({
+    title:{text:'连板高度分布',left:'center',textStyle:{fontSize:13}},
+    tooltip:{},grid:{left:120,right:30,top:40,bottom:30},
+    xAxis:{type:'value'},
+    yAxis:{type:'category',data:d.map(function(x){return x[0];})},
+    series:[{type:'bar',data:d.map(function(x){return x[1];}),
+      itemStyle:{color:function(p){return p.value>=4?'#e63946':'#d97706';}},
+      label:{show:true,position:'right'}}]
+  });
+})();
+</script>
+</body>
+</html>

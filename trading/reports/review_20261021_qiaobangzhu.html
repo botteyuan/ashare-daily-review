@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>乔帮主交割单复盘 — 交易系统总结</title>
+<style>
+  :root {
+    --bg: #fffbeb; --card: #ffffff; --text: #1c1917; --muted: #92400e;
+    --border: #fde68a; --accent: #b45309; --green: #16a34a; --red: #dc2626;
+    --blue: #2563eb; --amber: #d97706;
+    --header-from: #92400e; --header-to: #f59e0b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.6; padding: 24px 16px;
+  }
+  .container { max-width: 880px; margin: 0 auto; }
+  .header {
+    background: linear-gradient(135deg, var(--header-from) 0%, var(--header-to) 100%);
+    color: #fff; border-radius: 12px; padding: 24px; margin-bottom: 16px;
+  }
+  .header h1 { font-size: 1.35rem; font-weight: 700; }
+  .header .meta { opacity: 0.88; font-size: 0.85rem; margin-top: 6px; color: #fff; }
+  .summary-box {
+    background: var(--card); border: 1px solid var(--border); border-left: 4px solid var(--accent);
+    border-radius: 10px; padding: 16px 18px; margin-bottom: 16px;
+  }
+  .summary-box h2 { font-size: 0.95rem; color: var(--accent); margin: 0 0 8px; }
+  .summary-box ul { padding-left: 1.1em; font-size: 0.9rem; }
+  .summary-box li { margin: 4px 0; }
+  h2 { font-size: 1.15rem; font-weight: 600; margin: 28px 0 12px; padding-bottom: 6px; border-bottom: 2px solid var(--accent); color: var(--accent); }
+  h3 { font-size: 1.02rem; font-weight: 600; margin-bottom: 10px; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; margin-bottom: 16px; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 24px; }
+  @media (max-width: 600px) { .grid-2 { grid-template-columns: 1fr; } }
+  .kv { font-size: 0.9rem; }
+  .kv .label { color: var(--muted); }
+  .kv .value { font-weight: 600; }
+  .up { color: var(--red); }
+  .down { color: var(--green); }
+  table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+  th, td { padding: 7px 10px; text-align: left; border-bottom: 1px solid var(--border); }
+  th { color: var(--muted); font-weight: 500; background: #f9fafb; }
+  .tag { display: inline-block; font-size: 0.75rem; padding: 1px 8px; border-radius: 999px; background: #fef3c7; color: #92400e; margin-right: 4px; }
+  .quote {
+    background: #fff7ed; border-left: 4px solid var(--accent); border-radius: 8px;
+    padding: 12px 16px; font-size: 1rem; font-weight: 600; margin: 10px 0 16px;
+  }
+  ol.issue-list, ul.issue-list { padding-left: 20px; font-size: 0.9rem; }
+  .issue-list li { margin-bottom: 6px; }
+  .footer { margin-top: 32px; padding-top: 12px; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.8rem; text-align: center; }
+  .note { font-size: 0.82rem; color: var(--muted); margin-top: 10px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <h1>乔帮主交割单复盘 — 交易系统总结</h1>
+    <p class="meta">样本：《乔帮主交割单整理》24 页 · 11 场战役 · 资金 10 万 → 1300 万（约 2012 年初 — 2015 年初）｜报告生成：2026-10-21</p>
+  </div>
+
+  <div class="summary-box">
+    <h2>复盘摘要</h2>
+    <ul>
+      <li><strong>系统一句话（原话）</strong>：在龙头股沿着 5 日均线低吸，第二天冲高出货，没有一个打板进的；部分是下探前日涨停价位置买入。</li>
+      <li><strong>本质</strong>：龙头股 + 回踩低吸 + 次日冲高兑现的超短模式，配合融资杠杆与单票满仓，1–3 个交易日完成一个循环。</li>
+      <li><strong>选股共性</strong>：11 场战役全部做当时主线龙头（高铁总龙头中国南车、地产权重保利地产、题材连板龙罗顿发展/联创节能等），从不碰杂毛。</li>
+      <li><strong>风控共性</strong>：买错当日就纠错（天津松江尾盘跳水果断减仓），不排一字板、不扛单。</li>
+      <li><strong>最大局限</strong>：样本为"经典战役"精选，存在幸存者偏差；且处于 2012–2015 题材牛市环境。</li>
+    </ul>
+  </div>
+
+  <h2>一、资金曲线与战役总览</h2>
+  <div class="card">
+    <p style="font-size:0.9rem;margin-bottom:12px">10 万（2012 年初）→ 100 万（2013 年底，约 2 年）→ 1000 万（仅 1 年）→ 1300 万。百万级后主要靠"融资 + 龙头单票重仓"放大。</p>
+    <table>
+      <thead>
+        <tr><th>战役（资金段）</th><th>标的</th><th>时间</th><th>模式</th><th>单战涨幅</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>15 → 18 万</td><td>罗平锌电 002114</td><td>2012/01/11–13</td><td><span class="tag">底部启动低吸</span>回调买、冲高卖、回补再出</td><td class="up">≈+20%</td></tr>
+        <tr><td>35 → 38 万（首阴战法）</td><td>罗顿发展 600209</td><td>2012/08/08–09</td><td><span class="tag">首阴低吸</span>连板后首根大阴，盘中急杀 9.1–9.4 接，反弹 10 元上兑现</td><td class="up">≈+8%</td></tr>
+        <tr><td>50 → 60 万</td><td>联创节能 300343</td><td>2012/12/21</td><td><span class="tag">高位无脑追击</span>连板加速段 47–53 追入，当日午前 62–64 兑现，锁仓 3 个交易日口径收益 30%</td><td class="up">+30%</td></tr>
+        <tr><td>82 → 97 万</td><td>上海莱士 002252</td><td>2013/12/23–24</td><td><span class="tag">5日线低吸</span>分时回踩均价线 48.0–48.3 融资买入，次日早盘 53.1–53.9 出</td><td class="up">≈+11%</td></tr>
+        <tr><td>97 → 109 万</td><td>天津松江 600225</td><td>2013/12/24–26</td><td><span class="tag">低吸+快速纠错</span>7.56–7.65 买入，尾盘跳水 7.44 止损部分，次日 8.46–8.67 清仓</td><td class="up">≈+10%</td></tr>
+        <tr><td>125 → 141 万</td><td>联建光电 300269</td><td>2014/01/13–15</td><td><span class="tag">5日线低吸</span>30.65–30.77 买入、28–29 加仓，次日 31.4–32.2 分批出</td><td class="up">≈+10%</td></tr>
+        <tr><td>203 → 255 万</td><td>金轮股份 002722</td><td>2014/02/24–25</td><td><span class="tag">开盘急跌低吸</span>20.41–20.64 接，次日早盘 25.18–25.20 出</td><td class="up">≈+23%</td></tr>
+        <tr><td>229 → 278 万</td><td>东易日盛 002713</td><td>2014/03/03–07</td><td><span class="tag">龙头反复做T</span>45 元买 → 次日 55.5 出 → 48.3 回补 → 46 出 → 46.6 再进 → 44.7 收尾</td><td class="up">≈+20%</td></tr>
+        <tr><td>287 → 394 万</td><td>凤凰光学 600071</td><td>2014/07/10–11</td><td><span class="tag">半路扫板</span>强势途中 13.28–13.84 直接买入涨停（非排一字）</td><td class="up">≈+35%</td></tr>
+        <tr><td>473 → 745 万</td><td>保利地产 600048</td><td>2014/12/31–2015/01/05</td><td><span class="tag">权重龙头+杠杆</span>早盘 9.70–10.07 分批融资买入，跨假期次日 11.90 出</td><td class="up">≈+20%</td></tr>
+        <tr><td>855 → 1300 万</td><td>中国南车 601766</td><td>2015/01/19–21</td><td><span class="tag">总龙头低吸+日内T</span>回踩 11.3 融资买入，日内高低反复做 T，1/21 早盘 13.8–14.41 清仓</td><td class="up">≈+25%</td></tr>
+      </tbody>
+    </table>
+    <p class="note">注：涨幅按交割单买卖价差估算，为"检索所得/图面读数"，未复核当日复权行情。</p>
+  </div>
+
+  <h2>二、交易系统拆解（五要素）</h2>
+
+  <div class="card">
+    <h3>1. 选股：只做龙头，不做杂毛</h3>
+    <ul class="issue-list">
+      <li>样本 11 战全部是当期主线最核心标的：主题总龙头（中国南车）、板块权重旗手（保利地产）、题材连板龙（罗顿发展、联创节能、凤凰光学、金轮股份）。</li>
+      <li>介入前提是"已证明的强"——涨停/连板/领涨在先，他做的是强者的回调，而不是埋伏弱者。</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>2. 买点：低吸为主，四种入口（按出现频率排序）</h3>
+    <table>
+      <thead><tr><th>入口</th><th>定义</th><th>案例</th></tr></thead>
+      <tbody>
+        <tr><td><strong>主模式：5日线低吸</strong></td><td>强势龙头上涨途中回踩 5 日均线，分时回踩均价线（黄线）缩量企稳即接</td><td>上海莱士、联建光电、中国南车</td></tr>
+        <tr><td>下探前日涨停价</td><td>盘中回踩到前日涨停价位置不破，直接接</td><td>金轮股份（开盘急跌接）</td></tr>
+        <tr><td>首阴战法</td><td>连板后首根放量阴线，盘中急杀 4–6% 企稳低吸，赌次日反包</td><td>罗顿发展</td></tr>
+        <tr><td>高位追击（少数）</td><td>连续涨停加速段半路扫入——注意：是买在拉升半路，不是排一字板</td><td>联创节能、凤凰光学</td></tr>
+      </tbody>
+    </table>
+    <p class="note">原话"没有一个打板进的"指的是不排涨停板委托抢封单；凤凰光学"买入涨停"是股价运行至涨停价过程中的主动性买入，两者不矛盾。</p>
+  </div>
+
+  <div class="card">
+    <h3>3. 卖点：次日冲高出货，卖在加速段</h3>
+    <ul class="issue-list">
+      <li><strong>标准动作</strong>：次日早盘冲高（09:30–10:30 高开急拉段）分批卖出，不贪尾段——上海莱士、金轮股份、保利地产、中国南车全是早盘兑现。</li>
+      <li><strong>卖飞可回补</strong>：东易日盛 55.5 卖出后 48.3 买回，围绕龙头反复做 T，直到趋势走坏（3/7 收尾）才结束。</li>
+      <li><strong>日内 T 降成本</strong>：中国南车一进一出日内完成 12.0 卖 / 12.23 买 / 12.71 卖 / 12.49 买（融资账户担保品买卖实现变相 T+0）。</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>4. 仓位：单票满仓 + 融资杠杆 + 金字塔加码</h3>
+    <ul class="issue-list">
+      <li>每场战役只做一个标的，全仓进出；百万级后全部走融资（"融资买入 / 担保品买入"）。</li>
+      <li>分批加码方向是"越涨越加 / 越跌越接"的金字塔式建仓：保利地产 9.70 → 9.87 → 9.91 → 10.07 连续四笔加满。</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>5. 风控：纠错以"日"为单位，绝不隔夜扛错</h3>
+    <ul class="issue-list">
+      <li>天津松江：买入当日尾盘跳水，14:30 果断 7.44–7.45 减仓止损，次日冲高出剩余——单笔错误当天处理，不等下一个"理由"。</li>
+      <li>不碰一字板（买不进、出不来），所有介入点都留有当日可撤退的流动性。</li>
+    </ul>
+  </div>
+
+  <h2>三、三大代表性战法</h2>
+  <div class="card">
+    <table>
+      <thead><tr><th>战法</th><th>条件</th><th>买点</th><th>卖点</th><th>预期</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>龙头5日线低吸</strong>（主战法，样本最多）</td>
+          <td>题材龙头处明确上升趋势，回踩 5 日线</td>
+          <td>分时回踩均价线企稳 / 下探前日涨停价不破</td>
+          <td>次日冲高分批出</td>
+          <td class="up">+10%~+25%</td>
+        </tr>
+        <tr>
+          <td><strong>首阴战法</strong></td>
+          <td>连板龙头首次放量阴线，未破 5 日线、未放天量见顶</td>
+          <td>首阴日盘中急杀 4–6% 企稳低吸</td>
+          <td>当日/次日反包冲高出</td>
+          <td class="up">+8%~+15%</td>
+        </tr>
+        <tr>
+          <td><strong>高位无脑追击</strong></td>
+          <td>总龙头加速末端，情绪最狂热</td>
+          <td>拉升半路直接扫（不排板）</td>
+          <td>当日/次日脉冲即出，锁仓不超 3 个交易日</td>
+          <td class="up">+20%~+30%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>四、可迁移的规则化清单</h2>
+  <div class="card">
+    <ol class="issue-list">
+      <li><strong>池子</strong>：只做当日/当周最强主线的前两名龙头，其余一律不看。</li>
+      <li><strong>进场</strong>：强趋势回踩 5 日线 ± 分时均价线企稳；或回踩前日涨停价不破；或连板首阴急杀企稳。三者之外不买。</li>
+      <li><strong>禁止</strong>：不排一字板、不买下降通道、不在分时均价线下方追。</li>
+      <li><strong>出场</strong>：默认次日冲高出；若高开超预期可锁仓，但最长 3 个交易日强制了结。</li>
+      <li><strong>纠错</strong>：买入当日跌破介入逻辑位（分时低点 / 前日涨停价）→ 当日减仓，不留隔夜错误。</li>
+      <li><strong>资金</strong>：单票集中；加仓只在盈利方向上加（金字塔），亏损单只减不加。</li>
+    </ol>
+  </div>
+
+  <h2>五、风险与局限（照搬前必须知道）</h2>
+  <div class="card">
+    <ol class="issue-list">
+      <li><strong>幸存者偏差</strong>：交割单只贴"经典之战"，整体胜率、最大回撤、失败单全部未披露——按这套打法照抄，先亏的很可能就是被隐去的那些单。</li>
+      <li><strong>时代适配</strong>：2012–2015 是题材股黄金期（创业板牛市 + 2014 底蓝筹暴动 + 融资盘增量市），龙头低吸的赔率与当下市场结构不同。</li>
+      <li><strong>杠杆双刃剑</strong>：全场融资，赚时 130 倍，错时同样 130 倍速度亏；无杠杆复刻应把仓位上限降一档。</li>
+      <li><strong>做 T 依赖融资账户</strong>：担保品买卖实现的日内回转，普通账户做不了，对应能力缺失时卖点纪律要更保守。</li>
+      <li><strong>首阴/追击是高阶动作</strong>：需要对情绪周期、量能结构的盘感，退潮期这两招胜率骤降，普通投资者建议只学主战法（5 日线低吸）。</li>
+    </ol>
+  </div>
+
+  <h2>六、一句话收尾</h2>
+  <div class="card">
+    <div class="quote">"在龙头股沿着 5 日均线低吸，第二天冲高出货。"——快进快出是表象，本质是：只做最强的票、只在回调中拿筹码、只在加速中交筹码、错了当天认。</div>
+  </div>
+
+  <div class="footer">
+    本报告为交割单复盘分析，仅供个人学习参考，不构成投资建议。数据自 PDF 图面读取，涨幅为估算值。
+  </div>
+
+</div>
+</body>
+</html>

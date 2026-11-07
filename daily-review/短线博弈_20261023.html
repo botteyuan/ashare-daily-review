@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A股短线博弈复盘 — 2026-10-23（次日计划 10-26）</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+  :root{--bg:#f7f8fa;--card:#fff;--text:#1c1917;--muted:#6b7280;--border:#e5e7eb;
+        --accent:#1d4ed8;--red:#e63946;--green:#2d6a4f;--amber:#d97706;--soft:#f1f5f9;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,"PingFang SC","Noto Sans SC","Microsoft YaHei",sans-serif;
+       background:var(--bg);color:var(--text);line-height:1.6;padding:24px 14px}
+  .container{max-width:960px;margin:0 auto}
+  .header{background:linear-gradient(135deg,#1e3a8a,#1d4ed8);color:#fff;border-radius:14px;padding:22px 24px;margin-bottom:16px}
+  .header h1{font-size:1.35rem;font-weight:700}
+  .header .meta{opacity:.85;font-size:.85rem;margin-top:6px}
+  .verdict{background:#fff;border:1px solid var(--border);border-left:5px solid var(--amber);
+           border-radius:10px;padding:14px 18px;margin-bottom:16px;font-size:.95rem}
+  .verdict b{color:var(--amber)}
+  h2{font-size:1.1rem;font-weight:700;margin:26px 0 12px;padding-bottom:6px;border-bottom:2px solid var(--accent);color:var(--accent)}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px 18px;margin-bottom:14px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:12px}
+  .kpi{background:var(--soft);border-radius:8px;padding:10px 12px;text-align:center}
+  .kpi .v{font-size:1.2rem;font-weight:700}
+  .kpi .l{font-size:.75rem;color:var(--muted)}
+  .up{color:var(--red)} .down{color:var(--green)}
+  table{width:100%;border-collapse:collapse;font-size:.85rem;margin-top:6px}
+  th,td{padding:7px 9px;text-align:left;border-bottom:1px solid var(--border)}
+  th{color:var(--muted);font-weight:600;background:var(--soft)}
+  .tag{display:inline-block;font-size:.72rem;padding:1px 7px;border-radius:999px;background:#e0e7ff;color:#1e40af;margin:1px}
+  .tag.hot{background:#fee2e2;color:#b91c1c}
+  .tag.warn{background:#fef3c7;color:#b45309}
+  .sec-h{font-weight:700;margin:10px 0 4px}
+  .plan{background:var(--soft);border-radius:8px;padding:12px 14px;margin:8px 0;font-size:.88rem}
+  .plan .t{font-weight:700;color:var(--accent)}
+  .chart{width:100%;height:300px}
+  ul{margin:6px 0 6px 18px;font-size:.88rem}
+  li{margin:3px 0}
+  .watch{background:#fff;border:1px dashed var(--accent);border-radius:10px;padding:14px 16px;margin:10px 0}
+  .watch li{margin:4px 0}
+  .footer{margin-top:28px;padding-top:12px;border-top:1px solid var(--border);color:var(--muted);font-size:.78rem;text-align:center}
+  .note{font-size:.78rem;color:var(--muted);margin-top:8px}
+  .recap{background:#fff;border:1px solid var(--border);border-left:5px solid var(--accent);border-radius:10px;padding:16px 18px;margin-bottom:16px}
+  .recap h2{border-bottom:2px solid var(--accent);margin-top:0}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <h1>A股短线博弈复盘</h1>
+    <div class="meta">复盘日：2026-10-23（周五）｜ 次日计划交易日：2026-10-26（周一，因 10-24 周六 / 10-25 周日休市）｜ 数据后端：domain_search（聚合 westock-data 结构化行情、neodata 市场宽度与资金流、公开财经媒体收盘复盘）</div>
+  </div>
+
+  <div class="verdict">
+    <b>一句话定性：深 V 弱修复（退潮结束、情绪自冰点回暖，但非趋势反转）。</b>
+    隔夜美股科技重挫（纳指 -2.6%、费城半导体 -6.7%）压制开盘，沪指早盘破 3600、创业板指一度跌超 3%、盘中跌停一度近 70 家；午后机器人（物理 AI）+ 算力硬件回购/订单公告 + 宽基 ETF 放量，指数全线反包，创业板指收 +4.16%。全市场 4526 涨 / 909 跌，涨停 84、跌停 9，连板晋级率 33%，沪深主力当日小幅净流入。结构上「机器人/物理 AI 成为全天唯一共振主线（涨停潮、双 6 板），银行红利补跌、PCB 继续退潮」。
+    <b>次日策略：弱修复日控仓 ≤40%，只做机器人容量中军回踩低吸 + 低位一进二/二进三试错，严禁追 6 板纯情绪高标缩量加速与中位（3~4 板）断层区接力。</b>
+  </div>
+
+  <!-- 附：前一日计划总结复盘（Step 0） -->
+  <div class="recap">
+    <h2>附：前一日（10-22）计划总结复盘</h2>
+    <p class="note">目标交易日 = 前一日报告文件名日期 +1 天 = 2026-10-23（当日确为交易日）。下列「条件 / 操作 / 止损」取自 10-22 报告「十、次日操作计划」，实际行情取自 10-23 收盘真实数据。</p>
+    <table>
+      <thead><tr><th>计划项</th><th>标的</th><th>原定条件 / 止损</th><th>10-23 实际表现</th><th>归类</th></tr></thead>
+      <tbody>
+        <tr><td rowspan="5">① 容量中军<br>回踩低吸</td><td>三花智控 002050</td><td rowspan="5">次日不补跌、分时回踩 5 日/均价线企稳且缩量 → 分批低吸；破 10-22 低点且放量 → 出</td><td>低开 32.30→最低 32.21（破 10-22 低 32.81）放量，午后 V 收 35.08 <span class="up">+6.66%</span>，站上 5 日线/均价 ✅</td><td rowspan="5">回踩企稳成立（方向全对、平均 <span class="up">+7.68%</span>）；但早盘全数破前低且放量，按原止损纪律会被「假跌破」扫损</td></tr>
+        <tr><td>拓普集团 601689</td><td>最低 41.02（破前低 42.34）放量，V 收 44.77 <span class="up">+5.74%</span> ✅</td></tr>
+        <tr><td>绿的谐波 688017</td><td>最低 247.89（破前低 257.8）放量，V 收 290 <span class="up">+12.05%</span>（最强）✅</td></tr>
+        <tr><td>汇川技术 300124</td><td>最低 48.97（破前低 49.66）放量（量比 2.24），V 收 53.50 <span class="up">+7.19%</span> ✅</td></tr>
+        <tr><td>恒立液压 601100</td><td>最低 81.75（破前低 83.27）放量，V 收 89.50 <span class="up">+6.74%</span> ✅</td></tr>
+        <tr><td>② 绝对高位<br>分歧低吸</td><td>大业股份 603278<br>海洋王 002724</td><td>无换手不接，仅作风向标；若早盘放量分歧后回封（换手充分）方小仓试错</td><td>大业准地天板 6 板 <span class="up">+9.99%</span>（换手 33.42%）、海洋王地天板 6 板 <span class="up">+9.99%</span>（换手 28.10%）——均放量分歧后回封 ✅</td><td>条件触发、小仓试错可获利；但 6 板纯情绪 + 公司密集风险提示，风险极高</td></tr>
+        <tr><td>③ 低位试错<br>一进二</td><td>大洋电机 002249<br>襄阳轴承 000678<br>兆威机电 003021</td><td>竞价量＞昨日 1/3、开盘不破 0 轴、封单质量尚可</td><td>襄阳轴承 <span class="up">+9.98%</span> 2 板 ✅、兆威机电 <span class="up">+10.00%</span> 2 板（5 天 3 板）✅、大洋电机冲板未封 <span class="up">+7.37%</span>（未晋级）⚠</td><td>2/3 成功晋级、3/3 正收益；条件基本触发，但大洋电机冲板回落</td></tr>
+        <tr><td>④ 回避区</td><td>中位股 / 传媒算力高位 / 羊字辈 / 三峡新材</td><td>一律高风险区，不接力</td><td>三峡新材 600293 <span class="down">-6.12%</span> 断板（一字开板跳水）；传媒/算力 PCB 继续补跌（奥士康 -10% 跌停、澳弘 -8.18%）✅</td><td>回避判断精准正确，是最干净的一条</td></tr>
+      </tbody>
+    </table>
+    <div class="sec-h">① 当日计划命中率（按条目口径）：触发有效 4 / 可执行 4 = <b>100%</b></div>
+    <p class="note">说明：10-22 报告「十」分 ①②③④ 四条计划。① 容量中军 5 只方向全对（收盘均站上 5 日线/均价线、平均 +7.68%）；② 高标放量分歧回封涨停；③ 一进二 2/3 晋级、全正收益；④ 回避区（三峡新材断板、传媒/算力补跌）完全印证。若按「严格进场纪律」细分：中军「缩量」条件在深 V 日不成立（普遍放量），一进二 1 只未封板，属细节瑕疵，方向层面无失误。</p>
+    <div class="sec-h">② 可改进点（3 条以内）</div>
+    <ul>
+      <li><b>中军止损位在 V 型日被假跌破扫损：</b>5 只中军盘中全破 10-22 低点且放量，原「破前低放量→出」纪律会把单子扫在最低点附近，错失平均 +7.68% 大阳。改进：容量中军止损改为「收盘跌破 5 日线/前低且未收回→出」，或恐慌段用 1/3 仓试探、午后企稳再加，避免最低点被动止损。</li>
+      <li><b>一进二需剔除「业绩证伪/主动降温」标的：</b>大洋电机 Q3 净利 -70.6% 且公司称关节模组仍需培育，仍给 +7.37% 但未晋级；襄阳/兆威虽晋级但均发风险提示、PE 畸高。说明一进二仍偏纯情绪，须控仓且仅做辨识度前排、剔除证伪标的。</li>
+      <li><b>回避区框架精准，可固化：</b>「独立一字线 + 中位断层 + 退潮题材」三位一体回避法（三峡新材 -6.12% 断板为样本）判断完全正确，建议后续沿用。</li>
+    </ul>
+  </div>
+
+  <!-- 一、大盘概览 -->
+  <h2>一、大盘概览</h2>
+  <div class="card">
+    <div class="grid">
+      <div class="kpi"><div class="v down">3690.48</div><div class="l">上证指数 +0.89%</div></div>
+      <div class="kpi"><div class="v down">11673.83</div><div class="l">深证成指 +2.79%</div></div>
+      <div class="kpi"><div class="v down">2684.10</div><div class="l">创业板指 +4.16%</div></div>
+      <div class="kpi"><div class="v down">1345.51</div><div class="l">科创50 +3.04%</div></div>
+      <div class="kpi"><div class="v down">984.90</div><div class="l">北证50 +1.88%</div></div>
+      <div class="kpi"><div class="v down">19562亿</div><div class="l">两市成交额 +4275亿</div></div>
+      <div class="kpi"><div class="v up">84 / 9</div><div class="l">涨停 / 跌停</div></div>
+      <div class="kpi"><div class="v up">12只</div><div class="l">连板（晋级率33%）</div></div>
+      <div class="kpi"><div class="v up">≈ +8.6亿</div><div class="l">沪深300主力当日净流入</div></div>
+    </div>
+    <div id="idxChart" class="chart"></div>
+    <div id="fundChart" class="chart" style="height:240px"></div>
+    <p class="note">指数结构：早盘沪指最低 3574.27（-2.29%）、创业板指最低 2494.22（-3.21%），午后反包，沪指收 3690.48 几乎为全天最高（长下影），但仍压在 3700 点下方及均线密集带之下；创业板指/科创50 均为创调整新低后的超跌修复。广度由早盘冰点（下跌超 5000 家、跌停一度近 70 家）修复至收盘 81% 红盘。量能：两市 1.96 万亿、放量 4275 亿；创业板 ETF 易方达成交 195 亿创阶段新高、沪深300ETF 华泰柏瑞成交超 150 亿，被动资金回补明显。资金：沪深300 当日主力净流入约 8.6 亿（由净流出翻正），但近 5 日仍净流出 462 亿、近 10 日净流出 1057 亿，中期并未趋势性回流。按市场状态框架，属<b>退潮 → 弱修复（超跌反弹，非反转）</b>。</p>
+  </div>
+
+  <!-- 二、周期定位 -->
+  <h2>二、情绪周期定位</h2>
+  <div class="card">
+    <ul>
+      <li><b>量温度：</b>涨停 84（近一月最高）、跌停 9、红盘占比 81%、封板率 87%、晋级率 33% → <b>情绪自冰点回暖至弱修复</b>，处过去一年约 13% 分位低热度区（仍偏低）。</li>
+      <li><b>识主线：</b>人形机器人 + 物理 AI 是全天唯一形成合力的主线（涨停 35+、宇树 20cm、双 6 板、机构与游资共振）；算力硬件（CPO）午后靠公告修复次之；银行红利逆势补跌——属「新主线确立、旧防御瓦解」的切换日。</li>
+      <li><b>测亏钱效应：</b>早盘跌停一度近 70 家、下跌超 5000 家为极端释放；收盘收敛至跌停 9 家。但 PCB（奥士康 -10% 跌停、澳弘 -8.18%）仍补跌，说明旧周期（算力 PCB/银行）亏钱效应未完全出清。</li>
+      <li><b>判持筹心态：</b>两融余额 24191 亿、连续 10 日下降，杠杆未回补；宽基 ETF 巨量说明机构/被动资金回补，但属「抄底型」而非「趋势加仓型」。</li>
+      <li><b>空仓检验：</b>机器人前排（容量中军/一进二）仍是次日最舒服买点；但 6 板双标纯情绪 + 公司密集风险提示，赢面需严控仓位，多数中位与退潮题材仍不值得接。</li>
+    </ul>
+    <p class="note">周期判断：旧主线退潮结束，机器人处于<b>主升初期（分歧转一致）</b>——这是「冰点后新主线确认日」。结论：弱修复 + 只做主线前排低吸与低位试错，不接力中位、不追 6 板缩量加速。</p>
+  </div>
+
+  <!-- 三、龙头梯队：绝对高位 -->
+  <h2>三、龙头梯队 · 绝对高位（空间板）</h2>
+  <div class="card">
+    <table>
+      <thead><tr><th>标的</th><th>代码</th><th>板数</th><th>属性</th><th>板型</th><th>次日定位</th></tr></thead>
+      <tbody>
+        <tr><td>大业股份</td><td>603278</td><td><span class="up">6板</span></td><td>人形机器人（腱绳/送样）</td><td>准地天板（低开 13.93→收 15.96，换手 33.42%）</td><td>情绪风向标，仅小仓分歧试错</td></tr>
+        <tr><td>海洋王</td><td>002724</td><td><span class="up">6板</span></td><td>军工/照明（独立情绪）</td><td>地天板（最低 10.09 跌停→收 12.33，换手 28.10%）</td><td>情绪风向标，不接</td></tr>
+        <tr><td>上海九百</td><td>600838</td><td><span class="up">3板</span></td><td>零售（控股股东变更+项目）</td><td>换手板</td><td>次支线龙头，观察</td></tr>
+        <tr><td>兆威机电</td><td>003021</td><td><span class="up">2板</span></td><td>机器人灵巧手（5天3板）</td><td>强势换手板，机构+北向共净买</td><td>低位前排，看二进三</td></tr>
+        <tr><td>福莱新材 / 林州重机 / 凡拓数创</td><td>—</td><td><span class="up">5天3/6天3板</span></td><td>机器人/物理AI</td><td>换手板</td><td>前排跟风，分歧承接观察</td></tr>
+        <tr><td>慈文传媒</td><td>002343</td><td>11天7板</td><td>传媒（反包）</td><td>反包涨停</td><td>个股行情，不代表传媒回暖</td></tr>
+      </tbody>
+    </table>
+    <p class="note">绝对高位三要点：① <b>双 6 板（大业/海洋王）高标绑架高度</b>，但 4 板、5 板连续两日空缺 → 中位断层仍是最大坑区。② 大业股份已连续 2 日涨幅偏离值累超 20% 触发异动，公司澄清腱绳「尚未量产、未产生实质收益」且半年亏损；海洋王 PE-TTM 约 197 倍，纯情绪溢价。③ 高标次日能否 7 板、凡拓数创触发严重异动后承接，将决定机器人主线周一延续性。</p>
+  </div>
+
+  <!-- 四、低位试错：绝对低位 -->
+  <h2>四、低位试错 · 绝对低位（首板 / 一进二）</h2>
+  <div class="card">
+    <div class="sec-h">机器人 20cm 弹性（低位高弹性）</div>
+    <ul>
+      <li>宇树科技 688836（20cm 涨停、市值重回 2500 亿、6 日 +54%）、利亚德 300296（20cm）、海天瑞声 688787（20cm）→ 弹性标杆，看次日承接</li>
+      <li>华阳智能 301502（无框电机，20cm 2 连板）、奥普特（20cm）→ 弹性连板前排</li>
+    </ul>
+    <div class="sec-h">一进二 / 二进三 候选（机器人属性纯正）</div>
+    <ul>
+      <li>襄阳轴承 000678（减速器轴承，2 板 +9.98%）、兆威机电 003021（灵巧手，2 板 +10%）、正裕工业 / 南方路机 / 睿能科技 / 多伦科技 / 赛福天（2 板，多为机器人/汽零/专用设备）</li>
+      <li>条件：竞价量＞昨日 1/3、开盘不破 0 轴、封单质量尚可；剔除业绩证伪/主动降温标的（参考大洋电机 Q3 净利 -70.6% 且称关节模组需培育）</li>
+    </ul>
+    <div class="sec-h">半导体 / 物理AI 补涨（超跌反弹）</div>
+    <ul>
+      <li>粤芯半导体 301660（20cm 首板）、晶丰明源（20cm）、长鑫科技（涨近 8%）、天娱数科（物理AI，龙虎榜净买 4.89 亿居首）</li>
+    </ul>
+    <div class="sec-h">金融科技支线（指数修复配套）</div>
+    <ul>
+      <li>华林证券、汇金科技、大智慧涨停 → 跟随指数情绪，持续性弱于机器人主线</li>
+    </ul>
+    <p class="note">首板约 72 只（占涨停池多数），机器人为主；2 进 3 仅上海九百 1 只、连板高度全靠双 6 板与 2 板群体支撑 → 低位试错赔率改善但仍需条件达标，<b>只做机器人辨识度前排，不做中位（3~4 板）接力</b>。</p>
+  </div>
+
+  <!-- 五、亏钱效应扫描 -->
+  <h2>五、亏钱效应扫描</h2>
+  <div class="card">
+    <table>
+      <thead><tr><th>标的</th><th>代码</th><th>跌幅</th><th>题材</th><th>信号含义</th></tr></thead>
+      <tbody>
+        <tr><td>三峡新材</td><td>600293</td><td class="down">-6.12%</td><td>跨界锂电（独立一字线）</td><td>3 板断板，一字开板跳水，主力净流出 4.33 亿</td></tr>
+        <tr><td>中国银行</td><td>601988</td><td class="down">-4%+</td><td>银行红利</td><td rowspan="3">工农中建四大行均跌超 2.8%，避险资金撤离</td></tr>
+        <tr><td>工商银行</td><td>601398</td><td class="down">-3.14%</td><td>银行红利</td></tr>
+        <tr><td>建设银行</td><td>601939</td><td class="down">-3.09%</td><td>银行红利</td></tr>
+        <tr><td>奥士康</td><td>002589</td><td class="down">-10.00%</td><td>PCB/算力硬件</td><td>PCB 继续补跌，前期人气股退潮</td></tr>
+        <tr><td>澳弘电子 / 超声电子</td><td>—</td><td class="down">-8.18% / -6.31%</td><td>PCB</td><td>算力硬件补跌扩散</td></tr>
+        <tr><td>*ST卓然 / 通达创智</td><td>—</td><td class="down">-20% / -10%</td><td>风险警示</td><td>跌停 9 家多为 ST/退市，非主线杀伤</td></tr>
+      </tbody>
+    </table>
+    <p class="note">收盘跌停仅 9 家（不含 ST 口径 7 家），较 10-22 的 62 家大幅收敛；亏钱效应从「系统性杀跌」转为「局部退潮」——银行红利补跌（风格切进攻）+ PCB 旧主线补跌。信号：<b>旧周期（银行防御 / 算力 PCB）仍是出清区，新主线机器人全面占优</b>。</p>
+  </div>
+
+  <!-- 六、板块轮动与题材时机 -->
+  <h2>六、板块轮动与题材时机</h2>
+  <div class="card">
+    <div id="themeChart" class="chart" style="height:300px"></div>
+    <table style="margin-top:10px">
+      <thead><tr><th>题材</th><th>代表涨停</th><th>周期阶段</th><th>持续性</th></tr></thead>
+      <tbody>
+        <tr><td><span class="tag hot">人形机器人/物理AI</span></td><td>大业/兆威/襄阳轴承/宇树/利亚德/华阳智能</td><td>发酵→主升（分歧转一致）</td><td>强（全天唯一共振主线，资金净流入近 60 亿）</td></tr>
+        <tr><td><span class="tag">半导体</span></td><td>粤芯/晶丰明源/长鑫</td><td>超跌反弹</td><td>中（净流入 68.69 亿居行业首，但偏超跌）</td></tr>
+        <tr><td><span class="tag">软件/IT服务/电池</span></td><td>天娱数科/汇金科技/利元亨</td><td>修复</td><td>中（跟随指数）</td></tr>
+        <tr><td><span class="tag">金融科技</span></td><td>华林/汇金/大智慧</td><td>指数配套支线</td><td>弱（持续性弱于机器人）</td></tr>
+        <tr><td><span class="tag">零售</span></td><td>上海九百/百大/新华百货</td><td>次支线</td><td>弱（局部轮动）</td></tr>
+        <tr><td><span class="tag warn">银行红利</span></td><td>工农中建</td><td>退潮（补跌）</td><td>弱（风格切进攻，避险属性松动）</td></tr>
+        <tr><td><span class="tag warn">算力PCB/传媒</span></td><td>奥士康/澳弘/粤传媒</td><td>退潮补跌</td><td>弱（亏钱效应释放中）</td></tr>
+      </tbody>
+    </table>
+    <p class="note">行业涨幅前六（申万二级）：电池 +5.98%、软件开发 +5.79%、自动化设备 +5.66%、电机Ⅱ +5.55%、影视院线 +4.75%、数字媒体 +4.58%；其余多数收涨。资金真实去向：行业净流入居前为半导体（+68.69 亿）、软件开发、消费电子、电池、自动化设备、电机Ⅱ；净流出居前为银行（-29.91 亿）、元件、电力。这是「从银行防御搬家到机器人/半导体成长」的存量腾挪 + 增量 ETF 回补，并非全面普涨。</p>
+  </div>
+
+  <!-- 七、连板天梯 -->
+  <h2>七、连板天梯（12只，哑铃结构）</h2>
+  <div class="card">
+    <div id="ladderChart" class="chart" style="height:240px"></div>
+    <p class="note">6 板 2 只（大业/海洋王）、5 板 <b>完全空窗</b>、4 板 <b>完全空窗</b>、3 板 1 只（上海九百）、2 板约 9 只、首板约 72 只 → 「双高标 + 中位空缺 + 首板长尾」的哑铃形。<b>4 板/5 板连续两日断层 = 中位断层，是最易踩坑区</b>；双 6 板靠情绪而非业绩驱动，周一能否 7 板决定高度空间。</p>
+  </div>
+
+  <!-- 八、龙虎榜博弈 -->
+  <h2>八、龙虎榜博弈（近期活跃个股）</h2>
+  <div class="card">
+    <table>
+      <thead><tr><th>标的</th><th>代码</th><th>龙虎榜动向</th><th>解读</th></tr></thead>
+      <tbody>
+        <tr><td>天娱数科</td><td>002354</td><td>净买 4.89 亿（占成交 21%）</td><td>物理AI+AI智能体，全市场净买第一</td></tr>
+        <tr><td>歌尔股份</td><td>002241</td><td>净买 4.51 亿（北向 +6872 万）</td><td>消费电子，机构+北向共振</td></tr>
+        <tr><td>兆威机电</td><td>003021</td><td>净买 2.34 亿（机构 +3947 万、北向 +6259 万）</td><td>机器人灵巧手，质量最优前排</td></tr>
+        <tr><td>宇树科技</td><td>688836</td><td>净买 2.11 亿（机构净买全市场第一）</td><td>20cm 首板，机构大举进场</td></tr>
+        <tr><td>利亚德 / 埃斯顿</td><td>300296 / 002747</td><td>净买 1.76 / 1.72 亿</td><td>具身智能/工业机器人，机构+北向共买</td></tr>
+        <tr><td>索辰科技 / 盛视科技</td><td>—</td><td>净卖 3.03 / 1.48 亿</td><td>旧主线出货通道</td></tr>
+        <tr><td>海洋王 / 大业股份</td><td>002724 / 603278</td><td>机构与北向共同净卖出</td><td>高标分歧，资金边拉边派</td></tr>
+      </tbody>
+    </table>
+    <p class="note">当日 62 只上榜、机构现身 40 只（净买 20 / 净卖 20，合计净买 2.01 亿）、北向参与 24 只（合计净买 1.83 亿）。机构与北向<b>共同净买入</b>：歌尔、兆威机电、埃斯顿、天娱数科、宁波东力、吉大正元、当虹科技、绿盟科技、海天瑞声；<b>共同净卖出</b>：万里石、华锦股份、海洋王、利亚德。龙虎榜净买前排机器人+物理AI+消费电子占多数，印证资金向新主线集中；高标（海洋王/大业）机构北向共卖，显示边拉边派的分歧。</p>
+  </div>
+
+  <!-- 九、风险评估与仓位纪律 -->
+  <h2>九、风险评估与仓位纪律</h2>
+  <div class="card">
+    <ul>
+      <li><b>仓位上限：</b>弱修复日，总仓 ≤ 40%（较冰点日放松，但非反转），单票 ≤ 10%；不融资、不杠杆追高。</li>
+      <li><b>买点纪律：</b>只做「条件触发」——机器人容量中军回踩 5 日/均价线企稳、低位一进二/二进三竞价达标；<b>不接 6 板缩量加速、不接中位（3~4 板）断层区</b>。</li>
+      <li><b>止损纪律：</b>跌破介入逻辑位（分时低点 / 5 日线）且放量 → 当日减仓，不留隔夜错误；高位票破 5 日线 → 出。</li>
+      <li><b>最大风险：</b>① 双 6 板纯情绪 + 公司密集风险提示（大业腱绳未量产、兆威机器人收入占比极低、大洋电机 Q3 -70.6%），随时可能监管核查/断板踩踏；② 4 板/5 板连续断层，中位接力仍为最大坑（三峡新材 -6.12% 样本）；③ 指数仍压 3700 下方、创业板指反弹属超跌修复（MACD 未金叉、未收复 MA60），反转未确认；④ 两融 10 连降，杠杆未回补。</li>
+    </ul>
+  </div>
+
+  <!-- 十、次日操作计划 + 开盘关注清单 -->
+  <h2>十、次日（10-26 周一）操作计划</h2>
+  <p class="note">注：次日日历日 10-24 为周六、10-25 为周日，A 股休市；下一个实际交易日为 <b>2026-10-26（周一）</b>，下列计划条件针对该日。</p>
+
+  <div class="plan">
+    <div class="t">① 容量中军回踩低吸（主战方向，不追高）</div>
+    机器人容量中军：<b>三花智控、拓普集团、绿的谐波、汇川技术、恒立液压</b>（10-23 集体大涨 5.7%~12%、全部站上 5 日线，但均未收复 MA60、短线 RSI6 70~73 / KDJ_J>100 已显过热）。<br>
+    <b>条件</b>：周一不补跌、分时回踩 5 日线/均价线企稳（避开开盘恐慌段追低）、缩量 → <b>操作</b>：分批低吸，单票 ≤ 10% 仓。<b>止损</b>：收盘跌破 5 日线/10-23 低点且未收回 → 出（改进：用收盘确认替代盘中假跌破扫损）。
+  </div>
+
+  <div class="plan">
+    <div class="t">② 绝对高位（只看分歧低吸，严禁追缩量一字）</div>
+    大业股份 603278 / 海洋王 002724（6 板纯情绪 + 密集风险提示）：无换手不接，仅作情绪风向标；若早盘放量分歧后回封（换手充分）方小仓试错，缩量一字或高开秒板 → 不碰。任何破 5 日线 → 出。
+  </div>
+
+  <div class="plan">
+    <div class="t">③ 低位试错（一进二 / 二进三 / 首板补涨）</div>
+    襄阳轴承 000678、兆威机电 003021（看二进三）、华阳智能 301502（20cm 2 板）、正裕工业/南方路机/睿能科技等机器人属性纯正 2 板 → 条件：竞价量＞昨日 1/3、开盘不破 0 轴、封单质量尚可；<b>剔除业绩证伪/主动降温标的</b>（大洋电机类）。宇树科技/利亚德等 20cm 看分时承接，不追高。
+  </div>
+
+  <div class="plan">
+    <div class="t">④ 回避 / 风险区</div>
+    中位股（3~4 板接力、4/5 板断层区）、传媒/算力 PCB 高位（奥士康/澳弘）、银行红利补跌、羊字辈玄学、三峡新材式独立一字线 → 一律高风险区，不接力。
+  </div>
+
+  <div class="watch">
+    <div class="sec-h" style="margin-top:0">📌 次日（10-26）开盘关注清单（信号 = 操作）</div>
+    <ul>
+      <li><b>必须强于旧主线的方向：</b>机器人中军（三花/拓普/绿的谐波/汇川）开盘不补跌、分时站稳均价线 → 确认主线延续，可低吸。</li>
+      <li><b>容量票不能破位：</b>创业板权重（宁德时代/中际旭创/新易盛）能否站稳 5 日线（宁德 242.40 / 中际 631.62 / 新易盛 283.86）→ 未收复则指数仍探底风险，全线防守。</li>
+      <li><b>高位票不能闷杀：</b>6 板（大业/海洋王）出现 ≥1 只大幅低开或跌停 → 高度坍塌信号，收缩至 ≤20%。</li>
+      <li><b>退潮信号 = 减仓动作：</b>涨停＜50 / 跌停＞30 / 机器人分化无承接 / 银行继续破位 → 立即减仓至 ≤20%。</li>
+      <li><b>正反馈锚：</b>机器人容量中军放量走强 + 低位一进二/二进三晋级成功 + 指数站稳 3700 → 可加回仓位至 ≤40%。</li>
+    </ul>
+  </div>
+
+  <div class="footer">
+    数据来源：domain_search（聚合 westock-data 结构化行情、neodata 市场宽度与资金流、公开财经媒体收盘复盘），复盘日 2026-10-23 收盘数据。<br>
+    附：前一日（10-22）计划复盘命中率 4/4 = 100%（按条目方向口径）。<br>
+    以上分析基于公开数据，不构成投资建议。短线博弈高风险，请独立决策、严守止损。
+  </div>
+
+</div>
+
+<script>
+// 图1：三大指数涨跌幅（2026-10-23）
+(function(){
+  var c=echarts.init(document.getElementById('idxChart'));
+  c.setOption({
+    title:{text:'三大指数涨跌幅（2026-10-23，深V反转）',left:'center',textStyle:{fontSize:13}},
+    tooltip:{trigger:'axis',axisPointer:{type:'shadow'}},
+    grid:{left:60,right:20,top:40,bottom:30},
+    xAxis:{type:'category',data:['上证指数','深证成指','创业板指','科创50','北证50']},
+    yAxis:{type:'value',name:'涨跌幅%',axisLabel:{formatter:'{value}%'}},
+    series:[
+      {name:'涨跌幅%',type:'bar',
+        data:[0.89,2.79,4.16,3.04,1.88],
+        itemStyle:{color:function(p){return p.value<0?'#2d6a4f':'#e63946';}},
+        label:{show:true,position:'top',formatter:'{c}%'}}
+    ]
+  });
+})();
+
+// 图2：沪深300主力资金净流向（红柱=净流出，绿柱=净流入）
+(function(){
+  var d=[['近10日',-1056.68],['近5日',-462.22],['当日',8.64]];
+  var c=echarts.init(document.getElementById('fundChart'));
+  c.setOption({
+    title:{text:'沪深300主力资金净流向（亿元，红=净流出 绿=净流入）',left:'center',textStyle:{fontSize:13}},
+    tooltip:{trigger:'axis',axisPointer:{type:'shadow'}},
+    grid:{left:80,right:50,top:40,bottom:30},
+    xAxis:{type:'value',axisLabel:{formatter:'{value}亿'}},
+    yAxis:{type:'category',data:d.map(function(x){return x[0];})},
+    series:[{type:'bar',data:d.map(function(x){return {value:x[1],itemStyle:{color:x[1]<0?'#e63946':'#2d6a4f'}};}),
+      label:{show:true,position:'right',formatter:'{c}亿'}}]
+  });
+})();
+
+// 图3：行业涨幅 Top（申万二级，%）
+(function(){
+  var d=[['电池',5.98],['软件开发',5.79],['自动化设备',5.66],['电机Ⅱ',5.55],['影视院线',4.75],['数字媒体',4.58]];
+  d.sort(function(a,b){return a[1]-b[1];});
+  var c=echarts.init(document.getElementById('themeChart'));
+  c.setOption({
+    title:{text:'行业涨幅 Top（申万二级，2026-10-23，%）',left:'center',textStyle:{fontSize:13}},
+    tooltip:{trigger:'axis',axisPointer:{type:'shadow'}},
+    grid:{left:80,right:50,top:40,bottom:30},
+    xAxis:{type:'value',axisLabel:{formatter:'{value}%'}},
+    yAxis:{type:'category',data:d.map(function(x){return x[0];})},
+    series:[{type:'bar',data:d.map(function(x){return x[1];}),
+      itemStyle:{color:'#e63946'},
+      label:{show:true,position:'right',formatter:'{c}%'}}]
+  });
+})();
+
+// 图4：连板高度分布（哑铃结构）
+(function(){
+  var d=[['6板(大业/海洋王)',2],['5板(空窗)',0],['4板(空窗)',0],['3板(上海九百)',1],['2板(约9只)',9],['首板(约72只)',72]];
+  var c=echarts.init(document.getElementById('ladderChart'));
+  c.setOption({
+    title:{text:'连板高度分布（2026-10-23，只数）',left:'center',textStyle:{fontSize:13}},
+    tooltip:{trigger:'axis',axisPointer:{type:'shadow'}},
+    grid:{left:120,right:40,top:40,bottom:30},
+    xAxis:{type:'value',name:'只数'},
+    yAxis:{type:'category',data:d.map(function(x){return x[0];})},
+    series:[{type:'bar',data:d.map(function(x){
+        var v=x[1];
+        var color = v>=4 ? '#e63946' : (v===0 ? '#9ca3af' : (v===3 ? '#d97706' : (v===2 ? '#2d6a4f' : '#1d4ed8')));
+        return {value:v,itemStyle:{color:color}};
+      }),
+      label:{show:true,position:'right'}}]
+  });
+})();
+</script>
+</body>
+</html>
