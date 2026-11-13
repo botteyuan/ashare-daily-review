@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A股短线博弈复盘 — 2026-11-13（次日计划 11-16）</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+:root{--up:#e63946;--down:#2d6a4f;--ink:#1a1a1a;--mut:#666;--bg:#f6f7f9;--card:#fff;--bd:#e6e8ec;--blue:#2563eb;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);line-height:1.65}
+.wrap{max-width:1120px;margin:0 auto;padding:24px 18px 60px}
+h1{font-size:26px;margin:0 0 4px;letter-spacing:1px}
+.sub{color:var(--mut);font-size:13px;margin-bottom:18px}
+h2{font-size:19px;margin:30px 0 12px;padding-left:10px;border-left:4px solid var(--blue)}
+h3{font-size:15px;margin:16px 0 8px;color:#222}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:16px 18px;margin:12px 0}
+.kpis{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0}
+.kpi{flex:1;min-width:120px;background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:12px 14px}
+.kpi .v{font-size:22px;font-weight:700}
+.kpi .l{font-size:12px;color:var(--mut);margin-top:2px}
+.up{color:var(--up)}.down{color:var(--down)}
+table{width:100%;border-collapse:collapse;background:var(--card);font-size:13px;margin:8px 0}
+th,td{border:1px solid var(--bd);padding:7px 9px;text-align:center}
+th{background:#eef1f5;font-weight:600}
+td.l,th.l{text-align:left}
+.tag{display:inline-block;padding:1px 8px;border-radius:10px;font-size:12px;font-weight:600}
+.tag.pick{background:#fde8ea;color:var(--up)}
+.tag.watch{background:#eef3ff;color:#2563eb}
+.tag.drop{background:#e9f3ec;color:var(--down)}
+.tag.stale{background:#fff3cd;color:#9a6b00}
+.note{background:#fff8e9;border-left:4px solid #e0a800;padding:10px 14px;border-radius:6px;font-size:13px;margin:10px 0}
+.pref{background:#fbfcfe;border:1px solid var(--bd);border-radius:10px;padding:14px 18px;margin:14px 0}
+.pref h2{border-left-color:var(--up);margin-top:0}
+.chart{width:100%;height:340px;background:var(--card);border:1px solid var(--bd);border-radius:10px;margin:10px 0}
+.foot{margin-top:40px;padding-top:14px;border-top:1px solid var(--bd);color:var(--mut);font-size:12px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:760px){.grid2{grid-template-columns:1fr}}
+small{color:var(--mut)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>A股短线博弈复盘</h1>
+<div class="sub">复盘日 2026-11-13（周五）｜次日计划日 2026-11-16（周一）｜数据口径：收盘真实行情（聚合自结构化行情/公开财经媒体交叉验证）</div>
+
+<!-- ============ 前置回顾：Step0 + Step0b ============ -->
+<div class="pref">
+<h2>附：前一日计划总结复盘（前一日=11-12，目标交易日=11-13）</h2>
+<p>取「短线博弈_20261112.html」十、次日操作计划，对 19 只计划标的在 11-13 的真实表现逐条核对（开/高/低/收、5日线、涨停跌停、收盘方向）：</p>
+<table>
+<thead><tr><th>分组</th><th>标的</th><th>11-13收盘/涨跌</th><th>5日线</th><th>计划条件</th><th>实际判定</th></tr></thead>
+<tbody>
+<tr><td rowspan="10" class="l">①回踩5日线低吸<br><small>算力芯片+PCB+半导体设备</small></td><td>寒武纪688256</td><td class="up">978.88 +0.60%</td><td>守住</td><td>守线回踩低吸</td><td>条件触发·有效</td></tr>
+<tr><td>海光信息688041</td><td class="up">203.30 +0.46%</td><td>守住</td><td>守线回踩低吸</td><td>条件触发·有效</td></tr>
+<tr><td>北方华创002371</td><td class="up">553.00 -1.04%</td><td>守住</td><td>守线回踩低吸</td><td>条件触发·有效</td></tr>
+<tr><td>路维光电688401</td><td class="down">49.29 -2.97%</td><td>守住</td><td>守线回踩低吸</td><td>条件触发·有效</td></tr>
+<tr><td>沪电股份002463</td><td class="down">82.20 -10.00%</td><td>跌破·跌停</td><td>守线回踩低吸</td><td>条件未触发·应空仓</td></tr>
+<tr><td>东山精密002384</td><td class="down">84.37 -9.95%</td><td>跌破</td><td>守线回踩低吸</td><td>条件未触发·应空仓</td></tr>
+<tr><td>新恒汇301678</td><td class="down">40.81 -4.89%</td><td>跌破</td><td>守线回踩低吸</td><td>条件未触发·空仓</td></tr>
+<tr><td>阿石创300706</td><td class="down">38.34 -1.34%</td><td>跌破(微)</td><td>守线回踩低吸</td><td>边界·按纪律未触发</td></tr>
+<tr><td>华亚智能003043</td><td class="down">46.62 -3.78%</td><td>跌破</td><td>守线回踩低吸</td><td>条件未触发·空仓</td></tr>
+<tr><td>三佳科技600520</td><td class="down">20.41 -2.90%</td><td>跌破</td><td>守线回踩低吸</td><td>条件未触发·空仓</td></tr>
+<tr><td rowspan="4" class="l">②高位东方系<br><small>仅观察不接</small></td><td>东方海洋002086</td><td class="down">4.82 -6.59%</td><td>守住</td><td>仅观察</td><td>不接正确(验证大跌)</td></tr>
+<tr><td>大东方600327</td><td class="down">6.46 -10.03%</td><td>守住·跌停</td><td>仅观察</td><td>不接正确</td></tr>
+<tr><td>日出东方603366</td><td class="up">13.90 +5.54%</td><td>守住</td><td>仅观察</td><td>不接正确(盘中曾跌停)</td></tr>
+<tr><td>东方环宇603706</td><td class="up">27.75 +3.28%</td><td>守住</td><td>仅观察</td><td>不接正确</td></tr>
+<tr><td rowspan="4" class="l">③低位试错</td><td>富瀚微300613</td><td class="down">79.48 -4.00%</td><td>守住</td><td>低位试错</td><td>条件未触发·空仓(验证)</td></tr>
+<tr><td>瑞芯微603893</td><td class="down">217.80 -1.32%</td><td>跌破</td><td>低位试错</td><td>条件未触发·空仓</td></tr>
+<tr><td>冰山冷热000530</td><td class="down">10.33 -5.66%</td><td>跌破</td><td>低位试错</td><td>条件未触发·空仓(验证)</td></tr>
+<tr><td>大晟文化600892</td><td class="up">5.63 +3.30%</td><td>守住</td><td>低位试错</td><td>未触发·收涨(赚不到非误判)</td></tr>
+<tr><td class="l">计划外</td><td>金辰股份603396</td><td class="up">35.32 +10.00%</td><td>守住·涨停</td><td>—</td><td>连板强势，计划框架外(赚不到非误判)</td></tr>
+</tbody></table>
+<p><b>当日计划命中率</b>：严格买点触发 4/14 ≈ 29%（仅寒武/海光/北方华创/路维 4 只守线回踩有效上车）；<b>纪律/方向遵守率 100%</b>——接了不该接=0、误判=0；破线（沪电/东山/新恒汇/华亚/三佳）与高位东方系全部按纪律未接且被实际大跌验证；回避区（CPO/羊字辈/券商/贵金属）精准。</p>
+<p><b>可改进点</b>：① 退潮加速日"回踩5日线"胜率有限，须叠加「板块主力净流为正」前置过滤（PCB/半导体设备小票随板块净流出破线，回踩即接飞刀）；② 金辰股份意外涨停暴露"设备线低位连板"盲区，可增设首板/连板强度观察分支；③ 东方系监管函团灭属非系统风险，原"仅观察不接"纪律完全正确，维持。</p>
+</div>
+
+<div class="pref">
+<h2>附二：量学入选个股跟踪复盘（基准 2026-11-11 → 复盘日 11-13）</h2>
+<p class="note">基准表数据未更新提醒：本期跟踪所依据的「量学选股_潜伏板块全成分_20261112.html」数据截至 2026-11-11（与 11-13 相隔 2 个交易日），表内精确止损参考价因脚本字段未解析，本期以「基准累计涨跌幅 + 5日线代理」作简化判定，详见各只「后续处理」列。以下判定仅针对历史名单，不代表 11-13 选股结论。</p>
+<table>
+<thead><tr><th>方向</th><th>代码/名称</th><th>基准(11-11)</th><th>11-13收盘</th><th>累计</th><th>简化判定</th><th>后续处理</th></tr></thead>
+<tbody>
+<tr><td class="l">半导体设备</td><td>新恒汇301678</td><td>43.92</td><td class="down">40.81</td><td class="down">-7.09%</td><td>条件未触发·浮亏超阈值</td><td>转观察/待企稳</td></tr>
+<tr><td class="l">半导体设备</td><td>华海诚科688535</td><td>75.68</td><td class="down">73.08</td><td class="down">-3.44%</td><td>条件未触发·浮亏</td><td>继续观察</td></tr>
+<tr><td class="l">半导体设备</td><td>华亚智能003043</td><td>49.37</td><td class="down">46.62</td><td class="down">-5.57%</td><td>浮亏超阈值</td><td>转观察</td></tr>
+<tr><td class="l">半导体设备</td><td>雅克科技002409</td><td>89.31</td><td class="down">86.34</td><td class="down">-3.33%</td><td>条件未触发·浮亏</td><td>继续观察</td></tr>
+<tr><td class="l">半导体设备</td><td>映翰通688080</td><td>33.55</td><td class="down">31.75</td><td class="down">-5.36%</td><td>浮亏超阈值</td><td>转观察</td></tr>
+<tr><td class="l">农业/种业</td><td>蔚蓝生物603739</td><td>11.83</td><td class="down">11.45</td><td class="down">-3.21%</td><td>条件未触发·浮亏</td><td>继续观察</td></tr>
+<tr><td class="l">农业/种业</td><td>新赛股份600540</td><td>4.68</td><td class="down">4.38</td><td class="down">-6.41%</td><td>浮亏超阈值(板块内反差)</td><td>转观察</td></tr>
+<tr><td class="l">农业/种业</td><td>永顺生物920729</td><td>6.15</td><td class="down">6.01</td><td class="down">-2.28%</td><td>条件未触发·浮亏</td><td>继续观察</td></tr>
+<tr><td class="l">农业/种业</td><td>道道全002852</td><td>7.22</td><td class="down">7.13</td><td class="down">-1.25%</td><td>条件未触发·浮亏</td><td>继续观察</td></tr>
+<tr><td class="l">农业/种业</td><td>*ST仕净301030</td><td>3.50</td><td class="down">3.09</td><td class="down">-11.71%</td><td>基本面风险·远离</td><td>已离场剔除</td></tr>
+<tr><td class="l">红利防御</td><td>浙商银行601916</td><td>2.98</td><td class="down">2.96</td><td class="down">-0.67%</td><td>条件未触发·微浮亏</td><td>继续观察</td></tr>
+<tr><td class="l">红利防御</td><td>宝新能源000690</td><td>5.70</td><td class="down">5.69</td><td class="down">-0.18%</td><td>条件未触发·近平</td><td>继续观察</td></tr>
+<tr><td class="l">红利防御</td><td>穗恒运A000531</td><td>5.16</td><td class="down">5.13</td><td class="down">-0.58%</td><td>条件未触发·微浮亏</td><td>继续观察</td></tr>
+<tr><td class="l">红利防御</td><td>西昌电力600505</td><td>9.43</td><td class="down">9.29</td><td class="down">-1.48%</td><td>条件未触发·浮亏</td><td>继续观察</td></tr>
+<tr><td class="l">红利防御</td><td>富春环保002479</td><td>5.40</td><td class="down">5.26</td><td class="down">-2.59%</td><td>条件未触发·浮亏</td><td>继续观察</td></tr>
+</tbody></table>
+<p><b>汇总</b>：有效（触发动作未破位）0/15；条件未触发（继续观察）10/15；触发止损/离场（浮亏超阈值或风险）5/15（新恒汇/华亚/映翰通/新赛/*ST仕净）；<b>平均累计 -3.68%（15 只全绿）</b>。按方向分组强弱：红利防御 <b>-1.10%</b> ＞ 农业/种业 -4.97% ≈ 半导体设备 -4.96%。</p>
+<p><b>量学参数可改进点</b>：① 红利防御组在退潮日显韧性（平均仅 -1.10%），潜伏权重应提升；② 半导体设备组受元件(-6.29%)/半导体(-3.33%)重挫拖累，潜伏须叠加「板块主力净流为正」前置；③ *ST仕净属风险警示股（资不抵债、毛利率为负），不应纳入量学潜伏池，应剔除。</p>
+</div>
+
+<!-- ============ 一、大盘概览 ============ -->
+<h2>一、大盘概览</h2>
+<div class="kpis">
+<div class="kpi"><div class="v down">3634.35</div><div class="l">上证指数 -0.59%</div></div>
+<div class="kpi"><div class="v down">10968.79</div><div class="l">深证成指 -2.05%</div></div>
+<div class="kpi"><div class="v down">2426.08</div><div class="l">创业板指 -3.32%</div></div>
+<div class="kpi"><div class="v down">1279.66</div><div class="l">科创50 -2.30%</div></div>
+<div class="kpi"><div class="v">1.66万亿</div><div class="l">成交 缩量2764亿</div></div>
+<div class="kpi"><div class="v down">765/4748</div><div class="l">红盘率 13.7%</div></div>
+<div class="kpi"><div class="v down">38/39</div><div class="l">涨停/跌停</div></div>
+<div class="kpi"><div class="v down">-520亿</div><div class="l">主力净流出</div></div>
+</div>
+<div class="chart" id="cIdx"></div>
+<p>市场定性：<b>退潮加速第二日 / 退潮中段</b>。隔夜英伟达高层变动 + 东方系监管函双重压制，指数高开低走、个股普跌（超4700只下跌）。资金极致切向"确定性防御"——银行红利、AI短剧、猪肉养殖三线，算力硬件（CPO/PCB/半导体）系统性杀跌。技术面沪指失守3650支撑、5/10/20/60日线全面下压，调整尚未确认见底。</p>
+
+<!-- ============ 二、情绪周期定位 ============ -->
+<h2>二、情绪周期定位</h2>
+<div class="card">
+<p><b>量温度</b>：涨停38/跌停39（跌停骤增，前日仅个位数），连板7只、晋级率27.27%，红盘率13.7%——典型退潮中段偏冰点，温度 25/100，仓位上限 ≤30%。</p>
+<p><b>识主线</b>：唯一逆势主线=AI短剧/互动影游（文投18天10板锚定），但板块内部分化；银行红利为防御抱团而非进攻主线；算力硬件主线退潮（"易中天"跌超8%）。龙头+跟风未形成共振，属「单点情绪锚 + 防御轮动」结构，不健康。</p>
+<p><b>测亏钱效应</b>：昨日涨停今日平均 -1.54%（接力亏损）；东方系双5板团灭（大东方跌停、日出东方断板），羊字辈/玄学批量跌停——高位亏钱效应全面扩散。接高位 = 接飞刀。</p>
+<p><b>空仓检验</b>：假设空仓，今日舒适买点极少——仅银行/红利回踩与AI短剧分歧低吸可参与，胜算均＜60%。退潮日应「多看少动」，不强行交易。</p>
+</div>
+
+<!-- ============ 三、龙头梯队·绝对高位 ============ -->
+<h2>三、龙头梯队·绝对高位</h2>
+<table>
+<thead><tr><th>标的</th><th>身位</th><th>属性</th><th>板型</th><th>次日定位</th></tr></thead>
+<tbody>
+<tr><td>文投控股 600715</td><td class="l">18天10板（全场唯一超高位）</td><td class="l">AI短剧/互动影游</td><td class="l">缩量反包</td><td class="l">情绪总锚·监管高压·仅观察不参与</td></tr>
+<tr><td>天普股份 605255</td><td class="l">4连板（最高板）</td><td class="l">算力芯片人气·公司已澄清无AI业务</td><td class="l">情绪连板</td><td class="l">纯情绪博弈·逻辑证伪·仅观察</td></tr>
+<tr><td>北纬科技 002148</td><td class="l">3连板</td><td class="l">通信/卫星</td><td class="l">换手</td><td class="l">中位·仅观察</td></tr>
+<tr><td>金辰股份 603396</td><td class="l">3连板</td><td class="l">光伏设备</td><td class="l">一字/加速</td><td class="l">中位·仅观察</td></tr>
+</tbody></table>
+<p>高位结论：5板以上彻底断层，连板梯队极稀疏。<b>中位股（3~4板）均为高风险区</b>，退潮日不接力；文投作为情绪温度计仅作锚定，天普逻辑证伪不参与。</p>
+
+<!-- ============ 四、低位试错·绝对低位 ============ -->
+<h2>四、低位试错·绝对低位</h2>
+<div class="grid2">
+<div class="card"><h3>影视/短剧低位（20cm弹性）</h3><p>幸福蓝海 300528（20CM涨停）、横店影视 603103、中国电影 600977、金逸影视 002905（4天2板）、凯撒文化 002425（4天3板）——板块辨识度高、催化清晰，分歧日可低吸人气核心，不追缩量加速。</p></div>
+<div class="card"><h3>猪肉/养殖低位</h3><p>金新农 002548、天邦食品 002124 涨停；巨星农牧 603477、牧原 002714 逆势——猪价六连涨+能繁去化催化，防御属性强，可作低位容量埋伏。</p></div>
+<div class="card"><h3>半导体超跌弹性</h3><p>华胜天成 600410（华为昇腾，+10%）、旋极信息（20cm触板）、华东重机 002685（反包板）——国产算力低位补涨韧性相对强于海外链，但整体仍受板块净流出压制，仅小仓试错。</p></div>
+<div class="card"><h3>机器人低位</h3><p>日盈电子 603286（5天3板）、福达股份 601366 反包——物理AI局部回暖但核心品种欲振乏力，低位弹性可关注、不追高。</p></div>
+</div>
+
+<!-- ============ 五、亏钱效应扫描 ============ -->
+<h2>五、亏钱效应扫描</h2>
+<table>
+<thead><tr><th>方向</th><th>代表标的</th><th>信号含义</th></tr></thead>
+<tbody>
+<tr><td class="l">东方系/玄学</td><td class="l">大东方600327跌停、日出东方603366断板、东方海洋002086一度跌停、百洋/阳光照明/红太阳/阳光乳业跌停</td><td class="l">监管函触发纯名称炒作周期终结，高位玄学亏钱效应集中释放</td></tr>
+<tr><td class="l">海外算力链</td><td class="l">沪电002463/东山002384跌停、天孚-11%、中际-8.39%、新易盛-8.76%、源杰-11.76%</td><td class="l">CPO/PCB 毕业式杀跌，板块净流出居前，一日游确认</td></tr>
+<tr><td class="l">羊字辈/消费</td><td class="l">阳光照明、百洋股份、红太阳、阳光乳业集体跌停</td><td class="l">纯玄学+消费退潮，回避区精准</td></tr>
+<tr><td class="l">半导体设备小票</td><td class="l">新恒汇-4.89%、华亚-3.78%、三佳-2.90%、阿石创-1.34%破5日线</td><td class="l">板块净流出拖累，潜伏尚需等企稳</td></tr>
+</tbody></table>
+
+<!-- ============ 六、板块轮动与题材时机 ============ -->
+<h2>六、板块轮动与题材时机</h2>
+<table>
+<thead><tr><th>题材</th><th>当日表现</th><th>周期阶段</th><th>消息驱动</th></tr></thead>
+<tbody>
+<tr><td class="l">AI短剧/互动影游</td><td class="up">影视院线+4.37% 领涨，8股涨停</td><td class="l">发酵/加速</td><td class="l"><b>正向</b>：抖音集团短剧版权中心开放互动剧/互动影游合作（单剧最高20万保底+30~50%分成）；火山引擎 Seedance2.5 flash 优于前代；华为云 11-16 发布昇腾原生具身世界模型。来源：财联社/网易财经</td></tr>
+<tr><td class="l">银行红利</td><td class="up">+1.46%，5城商行创历史新高</td><td class="l">防御抱团</td><td class="l"><b>正向（防御）</b>：险资持续增持、南向净买入，息差边际企稳（中信建投继续看好高股息）。来源：机构研报/证券时报</td></tr>
+<tr><td class="l">猪肉/养殖</td><td class="up">金新农/天邦涨停</td><td class="l">启动/发酵</td><td class="l"><b>正向</b>：生猪主力合约六连涨站上9900元/吨；能繁母猪去化加速；农业农村部种业振兴推进会。来源：华泰/申万宏源研报、证券时报</td></tr>
+<tr><td class="l">国产算力芯片/超节点</td><td class="down">天普4板但证伪，寒武/海光抗跌小涨</td><td class="l">分歧</td><td class="l"><b>正向但分化</b>：兴业银行首套昇腾液冷超节点福州投产；机构看2027超节点从0到1放量。但英伟达高层变动压制海外链，天普公司澄清无AI业务。来源：财联社</td></tr>
+<tr><td class="l">海外算力链(CPO/PCB)</td><td class="down">通信-4.97%/电子-3.75%，多股跌停</td><td class="l">退潮/毕业</td><td class="l"><b>负向</b>：隔夜英伟达宣布高层变动，美股科技重挫，海外算力链传导至A股"易中天"集体大跌；一日游净流出确认。来源：央广网/财联社/中国基金报</td></tr>
+<tr><td class="l">机器人/物理AI</td><td class="down">福莱新材等前期人气跌停</td><td class="l">退潮</td><td class="l"><b>中性偏负</b>：日盈/福达局部反包，但世纪恒通-10%、福莱/海天瑞声跌幅居前，板块整体弱于AI漫剧。来源：财联社</td></tr>
+</tbody></table>
+<div class="chart" id="cFlow"></div>
+<p class="sub">个股主力净流入 Top：华胜天成 +11.51亿、文投控股 +5.40亿、长川科技 +4.79亿、浙商银行/宝新能源（红利防御）等；净流出居前：中际旭创 -29.42亿、新易盛 -21.15亿、蓝色光标 -19.09亿、东山精密（破位）。</p>
+
+<!-- ============ 七、连板天梯 ============ -->
+<h2>七、连板天梯</h2>
+<div class="chart" id="cLb"></div>
+<p>连板高度分布：4板1只（天普）、3板2只（北纬科技/金辰股份）、2板4只（凯撒文化4天3板/日盈电子5天3板/金逸影视4天2板/华东重机反包）、首板约30只（集中于院线/猪肉/机器人低位）。晋级率27.27%，5板以上断层。</p>
+
+<!-- ============ 八、龙虎榜博弈 ============ -->
+<h2>八、龙虎榜博弈</h2>
+<div class="card">
+<p><b>机构方向</b>：避险日机构净买防御（银行/电力/猪肉容量）为主，科技硬件遭净卖（中际/新易盛/东山精密机构出逃居前）。</p>
+<p><b>游资方向</b>：聚焦 AI短剧人气（文投控股封单7233万股居首、凯撒文化3779万股）、猪肉低位（金新农/天邦）；东方系断板后游资撤离，玄学题材退潮。</p>
+<p><b>风险提示</b>：天普股份4板为纯情绪（公司澄清无AI业务），龙虎榜若现家人榜则次日风险骤增；文投控股18天10板处监管高压区，仅作情绪锚。</p>
+</div>
+
+<!-- ============ 九、风险评估与仓位纪律 ============ -->
+<h2>九、风险评估与仓位纪律</h2>
+<div class="note">
+<b>风险等级：高（退潮加速）</b>。跌停骤增至39家、红盘率13.7%、沪指失守3650，调整未见底。核心风险：① 海外算力链继续杀跌拖累成长；② 高位玄学/连板监管风险（东方系已现）；③ 成交缩量、买盘撤退，反抽即兑现。
+<br><b>仓位纪律</b>：总仓 ≤20~30%；只做防御回踩（银行/红利/猪肉）与AI短剧分歧低吸，单票≤10%；严禁接力中位3~4板、严禁追高缩量加速、严禁接东方系/羊字辈/CPO破位。
+</div>
+
+<!-- ============ 十、次日操作计划 ============ -->
+<h2>十、次日操作计划（次日交易日 2026-11-16 周一）</h2>
+<div class="card">
+<p><b>总仓位 ≤25%</b>｜退潮加速第二日次日，只做防御回踩 + 题材分歧低吸，不做高位接力。</p>
+<h3>① 容量中军回踩低吸（守5日线 + 板块净流为正前置）</h3>
+<table>
+<thead><tr><th>标的</th><th>条件</th><th>操作</th><th>止损</th></tr></thead>
+<tbody>
+<tr><td class="l">工行601398 / 建行601939</td><td class="l">回踩5日线不破、板块净流为正</td><td class="l">小仓低吸</td><td class="l">收盘破10日线离场</td></tr>
+<tr><td class="l">浙商银行601916 / 宝新能源000690</td><td class="l">红利防御回踩不破前低</td><td class="l">低吸</td><td class="l">破前低离场</td></tr>
+<tr><td class="l">横店影视603103 / 中国电影600977</td><td class="l">AI短剧分歧回踩5日线、板块净流不转负</td><td class="l">分歧低吸容量</td><td class="l">收盘破5日线离场</td></tr>
+<tr><td class="l">巨星农牧603477 / 牧原002714</td><td class="l">猪肉回踩不破5日线、猪价催化延续</td><td class="l">低吸容量</td><td class="l">破5日线离场</td></tr>
+</tbody></table>
+<h3>② 绝对高位（仅观察，不接力）</h3>
+<p>文投控股600715（18天10板·监管锚）、天普股份605255（4板·证伪）、北纬科技002148（3板）、金辰股份603396（3板）——仅作风向标，不买入。</p>
+<h3>③ 低位试错（20cm/弹性，单票≤10%）</h3>
+<p>幸福蓝海300528（20cm）、凯撒文化002425（4天3板）、金逸影视002905（4天2板）、日盈电子603286（5天3板）、华东重机002685（反包）——仅在分时弱转强、不追缩量加速时小仓。</p>
+<h3>④ 回避/风险区（不碰）</h3>
+<p>东方系（大东方600327/日出东方603366/东方海洋002086/东方环宇603706 监管团灭）；海外算力链破位（沪电002463/东山002384/中际300308/新易盛300502）；羊字辈/玄学（阳光照明600261/百洋002696/红太阳000525）；半导体设备破位待企稳（新恒汇301678/华亚003043/三佳600520/路维688401/阿石创300706）；券商、贵金属、白酒农业净流出。</p>
+</div>
+<h3>次日开盘关注清单（含量学跟踪池转观察标的）</h3>
+<p>来自量学跟踪池、本期「转观察」的标的：新恒汇301678、华亚智能003043、映翰通688080、新赛股份600540——仅作观察，不新增买入建议（条件→触发→离场框架，不作买入措辞）。<br>
+<b>退潮信号=减仓动作</b>：若开盘跌停家数仍≥30、沪指跌破3600、文投控股/天普股份断板跌停，则总仓降至≤15%或空仓。</p>
+
+<!-- ============ 十一、潜伏埋伏方向 ============ -->
+<h2>十一、潜伏埋伏方向（基于「10日内启动/发酵/分歧 + 未高潮」选股法）</h2>
+<div class="card">
+<h3>筛选流程回顾</h3>
+<p>① <b>候选池（近10日扫描）</b>：半导体设备（11-06启动、11-13分歧回踩）、国产算力芯片（11-12启动、11-13分歧）、AI短剧/互动影游（11-09启动、11-13发酵强）、猪肉养殖（11-13启动）、商业航天（11-06分歧）、银行红利（防御轮动）均纳入。<br>
+② <b>四维过滤（须同时满足）</b>：容量较大（板块级）、启动辨识度高、板块紧密度高、未大规模高潮。<br>
+③ <b>选股（股性活跃为核心）</b>：容量中军 + 弹性标的按股性取舍。<br>
+④ <b>表述</b>：统一「埋伏条件→触发动作→止损/离场」框架。</p>
+</div>
+<h3>入选板块（2~3个）</h3>
+<table>
+<thead><tr><th>板块</th><th>10日轨迹</th><th>四维过滤依据</th><th>代表个股（角色）</th><th>预期催化窗口</th></tr></thead>
+<tbody>
+<tr><td class="l">① 半导体设备国产替代</td><td class="l">11-06启动→11-13随板块(-3.33%)回踩分歧，未高潮</td><td class="l">板块容量中等、启动辨识度高（扩产订单/SEMI数据）、内部分歧未毕业；未高潮（无集体涨停）</td><td class="l">路维光电688401(弹性)、新恒汇301678(弹性)、阿石创300706(弹性)、华亚智能003043(容量中军)、三佳科技600520(弹性)</td><td class="l">半导体设备订单/国产化率数据；须等板块主力净流转正再埋伏</td></tr>
+<tr><td class="l">② AI短剧/互动影游</td><td class="l">11-09启动→11-13发酵（8股涨停，文投18天10板）</td><td class="l">板块容量中等、辨识度极高、内联动强；未高潮（未集体毕业，仅局部涨停）</td><td class="l">幸福蓝海300528(20cm弹性)、横店影视603103(容量中军)、中国电影600977(容量中军)；文投600715仅作锚</td><td class="l">抖音互动剧合作落地、火山引擎模型、华为云11-16具身模型发布会</td></tr>
+<tr><td class="l">③ 猪肉/养殖</td><td class="l">11-13启动（金新农/天邦涨停）</td><td class="l">板块容量中等偏大、辨识度中、防御属性强、未高潮</td><td class="l">金新农002548(弹性)、天邦食品002124(弹性)、巨星农牧603477(容量中军)</td><td class="l">生猪期货六连涨、能繁去化加速、猪价拐点预期</td></tr>
+</tbody></table>
+<p><b>剔除（已高潮/已退潮）</b>：CPO/PCB（11-11高潮后11-13崩、毕业信号）、国产算力芯片高位（天普证伪/寒武海光仅抗跌非主升）、机器人/物理AI（退潮）、白酒农业净流出、券商、贵金属、玄学东方系（监管团灭）、银行（已创新高防御、不潜伏）。</p>
+<p class="sub">以上为基于量价与轮动规律的观察，不构成投资建议。统一框架：埋伏条件（缩量回踩不破支撑+催化持续）→触发动作（放量过左峰/小倍阳/阳盖阴）→止损/离场（收盘跌破支撑或催化证伪）。</p>
+</div>
+
+<div class="foot">
+数据源：收盘真实行情经聚合（结构化行情 + 公开财经媒体交叉验证）；连板/龙虎榜/消息面来自公开复盘与财联社等。本报告由自动化流程生成，仅供研究参考，不构成投资建议。
+</div>
+
+<script>
+function bar(id,title,cat,val,colors){
+  var c=echarts.init(document.getElementById(id));
+  c.setOption({
+    title:{text:title,left:'center',textStyle:{fontSize:15}},
+    tooltip:{trigger:'axis',axisPointer:{type:'shadow'},
+      formatter:function(p){var s=p[0].name+'<br>';p.forEach(function(i){s+=i.marker+i.seriesName+': '+(i.value>=0?'+':'')+i.value+'%<br>';});return s;}},
+    grid:{left:60,right:20,top:40,bottom:60},
+    xAxis:{type:'category',data:cat,axisLabel:{interval:0,rotate:35,fontSize:11}},
+    yAxis:{type:'value',axisLabel:{formatter:'{value}%'}},
+    series:[{type:'bar',data:val.map(function(v,i){return {value:v,itemStyle:{color:colors[i]}};}),
+      label:{show:true,position:'top',fontSize:10,formatter:function(p){return (p.value>=0?'+':'')+p.value+'%';}}}]
+  });
+}
+var up='#e63946',down='#2d6a4f';
+bar('cIdx','指数涨跌 2026-11-13',
+  ['上证','深成指','创业板','科创50','北证50'],
+  [-0.59,-2.05,-3.32,-2.30,-3.50],
+  [down,down,down,down,down]);
+
+(function(){
+  var c=echarts.init(document.getElementById('cFlow'));
+  var d=[['银行',8.56],['食品饮料',6.18],['公用事业',4.26],['石油石化',3.51],['计算机',3.36],['非银金融',2.48],['煤炭',2.43],
+         ['电子',-214.18],['通信',-90.23],['机械设备',-46.44],['电力设备',-37.10],['有色金属',-30.43],['基础化工',-24.90],['传媒',-18.99]];
+  d.sort(function(a,b){return a[1]-b[1];});
+  c.setOption({
+    title:{text:'行业主力净流入(亿元)',left:'center',textStyle:{fontSize:15}},
+    tooltip:{trigger:'axis',axisPointer:{type:'shadow'}},
+    grid:{left:70,right:20,top:40,bottom:30},
+    xAxis:{type:'value',axisLabel:{formatter:'{value}'}},
+    yAxis:{type:'category',data:d.map(function(x){return x[0];}),axisLabel:{fontSize:11}},
+    series:[{type:'bar',data:d.map(function(x){return {value:x[1],itemStyle:{color:x[1]>=0?up:down}};}),
+      label:{show:true,position:'right',fontSize:10,formatter:function(p){return (p.value>=0?'+':'')+p.value;}}}]
+  });
+})();
+
+(function(){
+  var c=echarts.init(document.getElementById('cLb'));
+  c.setOption({
+    title:{text:'连板高度分布',left:'center',textStyle:{fontSize:15}},
+    tooltip:{trigger:'axis',axisPointer:{type:'shadow'}},
+    grid:{left:50,right:20,top:40,bottom:30},
+    xAxis:{type:'category',data:['4板','3板','2板','首板']},
+    yAxis:{type:'value',name:'只数'},
+    series:[{type:'bar',data:[{value:1,itemStyle:{color:up}},{value:2,itemStyle:{color:up}},
+      {value:4,itemStyle:{color:up}},{value:30,itemStyle:{color:'#f4a261'}}],
+      label:{show:true,position:'top'}}]
+  });
+})();
+window.addEventListener('resize',function(){['cIdx','cFlow','cLb'].forEach(function(id){var e=echarts.getInstanceByDom(document.getElementById(id));if(e)e.resize();});});
+</script>
+</body>
+</html>
